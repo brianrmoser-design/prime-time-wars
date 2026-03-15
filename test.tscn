@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dvms7ufixc2kg"]
+
+[ext_resource type="Script" uid="uid://dn241gigsovji" path="res://Scripts/engine_verifier.gd" id="1_37kl0"]
+
+[node name="Test" type="Node" unique_id=370577048]
+script = ExtResource("1_37kl0")

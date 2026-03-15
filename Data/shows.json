@@ -1,0 +1,682 @@
+[
+  {
+	"Show_ID": "SHOW_102938",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "24",
+	"Network": "FOX",
+	"Years": "6",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_928374",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Boston Legal",
+	"Network": "ABC",
+	"Years": "4",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_182930",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Brothers & Sisters",
+	"Network": "ABC",
+	"Years": "2",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_102939",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Desperate Housewives",
+	"Network": "ABC",
+	"Years": "4",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_657483",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "ER",
+	"Network": "NBC",
+	"Years": "14",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_263748",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Friday Night Lights",
+	"Network": "NBC",
+	"Years": "2",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_637485",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Grey's Anatomy",
+	"Network": "ABC",
+	"Years": "4",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_475820",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Prison Break",
+	"Network": "FOX",
+	"Years": "3",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_192830",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Private Practice",
+	"Network": "ABC",
+	"Years": "1",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_475829",
+	"ShowType_ID": "TYPE_02",
+	"show_type": "sitcom_multicam",
+	"Show_Name": "How I Met Your Mother",
+	"Network": "CBS",
+	"Years": "3",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_584721",
+	"ShowType_ID": "TYPE_02",
+	"show_type": "sitcom_multicam",
+	"Show_Name": "The Big Bang Theory",
+	"Network": "CBS",
+	"Years": "1",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_938472",
+	"ShowType_ID": "TYPE_02",
+	"show_type": "sitcom_multicam",
+	"Show_Name": "Two and a Half Men",
+	"Network": "CBS",
+	"Years": "5",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_182934",
+	"ShowType_ID": "TYPE_03",
+	"show_type": "sketch_comedy",
+	"Show_Name": "MADtv",
+	"Network": "FOX",
+	"Years": "13",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_928345",
+	"ShowType_ID": "TYPE_03",
+	"show_type": "sketch_comedy",
+	"Show_Name": "Saturday Night Live",
+	"Network": "NBC",
+	"Years": "33",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_839406",
+	"ShowType_ID": "TYPE_04",
+	"show_type": "talk_late_night",
+	"Show_Name": "Jimmy Kimmel Live!",
+	"Network": "ABC",
+	"Years": "5",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_657382",
+	"ShowType_ID": "TYPE_04",
+	"show_type": "talk_late_night",
+	"Show_Name": "Last Call with Carson Daly",
+	"Network": "NBC",
+	"Years": "6",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_293841",
+	"ShowType_ID": "TYPE_04",
+	"show_type": "talk_late_night",
+	"Show_Name": "Late Night",
+	"Network": "NBC",
+	"Years": "26",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_172830",
+	"ShowType_ID": "TYPE_04",
+	"show_type": "talk_late_night",
+	"Show_Name": "The Late Late Show",
+	"Network": "CBS",
+	"Years": "13",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_584740",
+	"ShowType_ID": "TYPE_04",
+	"show_type": "talk_late_night",
+	"Show_Name": "The Late Show",
+	"Network": "CBS",
+	"Years": "15",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_102839",
+	"ShowType_ID": "TYPE_04",
+	"show_type": "talk_late_night",
+	"Show_Name": "The Tonight Show",
+	"Network": "NBC",
+	"Years": "54",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_736291",
+	"ShowType_ID": "TYPE_05",
+	"show_type": "news_evening",
+	"Show_Name": "20/20",
+	"Network": "ABC",
+	"Years": "17",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_119283",
+	"ShowType_ID": "TYPE_05",
+	"show_type": "news_evening",
+	"Show_Name": "ABC World News Tonight",
+	"Network": "ABC",
+	"Years": "60",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_475869",
+	"ShowType_ID": "TYPE_05",
+	"show_type": "news_evening",
+	"Show_Name": "CBS Evening News",
+	"Network": "CBS",
+	"Years": "67",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_482910",
+	"ShowType_ID": "TYPE_05",
+	"show_type": "news_evening",
+	"Show_Name": "Dateline",
+	"Network": "NBC",
+	"Years": "31",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_503928",
+	"ShowType_ID": "TYPE_05",
+	"show_type": "news_evening",
+	"Show_Name": "NBC Nightly News",
+	"Network": "NBC",
+	"Years": "38",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_172839",
+	"ShowType_ID": "TYPE_06",
+	"show_type": "news_morning",
+	"Show_Name": "Good Morning America",
+	"Network": "ABC",
+	"Years": "33",
+	"Duration_mins": "120",
+	"Blocks_30m": "4"
+  },
+  {
+	"Show_ID": "SHOW_928310",
+	"ShowType_ID": "TYPE_06",
+	"show_type": "news_morning",
+	"Show_Name": "The Early Show",
+	"Network": "CBS",
+	"Years": "9",
+	"Duration_mins": "120",
+	"Blocks_30m": "4"
+  },
+  {
+	"Show_ID": "SHOW_647321",
+	"ShowType_ID": "TYPE_06",
+	"show_type": "news_morning",
+	"Show_Name": "Today",
+	"Network": "NBC",
+	"Years": "56",
+	"Duration_mins": "120",
+	"Blocks_30m": "4"
+  },
+  {
+	"Show_ID": "SHOW_839405",
+	"ShowType_ID": "TYPE_07",
+	"show_type": "news_magazine",
+	"Show_Name": "60 Minutes",
+	"Network": "CBS",
+	"Years": "40",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_837461",
+	"ShowType_ID": "TYPE_08",
+	"show_type": "news_overnight",
+	"Show_Name": "Nightline",
+	"Network": "ABC",
+	"Years": "28",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_493827",
+	"ShowType_ID": "TYPE_09",
+	"show_type": "news_political",
+	"Show_Name": "Face the Nation",
+	"Network": "CBS",
+	"Years": "54",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_374829",
+	"ShowType_ID": "TYPE_09",
+	"show_type": "news_political",
+	"Show_Name": "Fox News Sunday",
+	"Network": "FOX",
+	"Years": "12",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_647389",
+	"ShowType_ID": "TYPE_09",
+	"show_type": "news_political",
+	"Show_Name": "Meet the Press",
+	"Network": "NBC",
+	"Years": "61",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_283740",
+	"ShowType_ID": "TYPE_09",
+	"show_type": "news_political",
+	"Show_Name": "This Week",
+	"Network": "ABC",
+	"Years": "27",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_102835",
+	"ShowType_ID": "TYPE_10",
+	"show_type": "reality_show",
+	"Show_Name": "Kitchen Nightmares",
+	"Network": "FOX",
+	"Years": "1",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_203948",
+	"ShowType_ID": "TYPE_11",
+	"show_type": "reality_competition",
+	"Show_Name": "America's Got Talent",
+	"Network": "NBC",
+	"Years": "2",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_102834",
+	"ShowType_ID": "TYPE_11",
+	"show_type": "reality_competition",
+	"Show_Name": "American Idol",
+	"Network": "FOX",
+	"Years": "7",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_748293",
+	"ShowType_ID": "TYPE_11",
+	"show_type": "reality_competition",
+	"Show_Name": "Big Brother",
+	"Network": "CBS",
+	"Years": "9",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_736251",
+	"ShowType_ID": "TYPE_11",
+	"show_type": "reality_competition",
+	"Show_Name": "Dancing with the Stars",
+	"Network": "ABC",
+	"Years": "6",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_748290",
+	"ShowType_ID": "TYPE_11",
+	"show_type": "reality_competition",
+	"Show_Name": "Survivor",
+	"Network": "CBS",
+	"Years": "16",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_182937",
+	"ShowType_ID": "TYPE_11",
+	"show_type": "reality_competition",
+	"Show_Name": "Wipeout",
+	"Network": "ABC",
+	"Years": "1",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_364758",
+	"ShowType_ID": "TYPE_12",
+	"show_type": "sports_live",
+	"Show_Name": "Sunday Night Football",
+	"Network": "NBC",
+	"Years": "2",
+	"Duration_mins": "180",
+	"Blocks_30m": "6"
+  },
+  {
+	"Show_ID": "SHOW_574839",
+	"ShowType_ID": "TYPE_13",
+	"show_type": "talk_panel",
+	"Show_Name": "The View",
+	"Network": "ABC",
+	"Years": "10",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_584739",
+	"ShowType_ID": "TYPE_16",
+	"show_type": "sitcom_singlecam",
+	"Show_Name": "30 Rock",
+	"Network": "NBC",
+	"Years": "2",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_584729",
+	"ShowType_ID": "TYPE_16",
+	"show_type": "sitcom_singlecam",
+	"Show_Name": "Samantha Who?",
+	"Network": "ABC",
+	"Years": "1",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_384759",
+	"ShowType_ID": "TYPE_16",
+	"show_type": "sitcom_singlecam",
+	"Show_Name": "The Office",
+	"Network": "NBC",
+	"Years": "4",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_475830",
+	"ShowType_ID": "TYPE_16",
+	"show_type": "sitcom_singlecam",
+	"Show_Name": "Ugly Betty",
+	"Network": "ABC",
+	"Years": "2",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_564738",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "Bones",
+	"Network": "FOX",
+	"Years": "3",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_596847",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "Criminal Minds",
+	"Network": "CBS",
+	"Years": "3",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_283746",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "CSI: Crime Scene Investigation",
+	"Network": "CBS",
+	"Years": "8",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_584930",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "House",
+	"Network": "FOX",
+	"Years": "4",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_928371",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "Law & Order: SVU",
+	"Network": "NBC",
+	"Years": "9",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_293874",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "NCIS",
+	"Network": "CBS",
+	"Years": "5",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_637429",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "The Mentalist",
+	"Network": "CBS",
+	"Years": "0",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_384950",
+	"ShowType_ID": "TYPE_18",
+	"show_type": "drama_scifi_fantasy",
+	"Show_Name": "Chuck",
+	"Network": "NBC",
+	"Years": "1",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_584736",
+	"ShowType_ID": "TYPE_18",
+	"show_type": "drama_scifi_fantasy",
+	"Show_Name": "Fringe",
+	"Network": "FOX",
+	"Years": "0",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_938475",
+	"ShowType_ID": "TYPE_18",
+	"show_type": "drama_scifi_fantasy",
+	"Show_Name": "Ghost Whisperer",
+	"Network": "CBS",
+	"Years": "3",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_293840",
+	"ShowType_ID": "TYPE_18",
+	"show_type": "drama_scifi_fantasy",
+	"Show_Name": "Heroes",
+	"Network": "NBC",
+	"Years": "2",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_374820",
+	"ShowType_ID": "TYPE_18",
+	"show_type": "drama_scifi_fantasy",
+	"Show_Name": "Lost",
+	"Network": "ABC",
+	"Years": "4",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_203941",
+	"ShowType_ID": "TYPE_18",
+	"show_type": "drama_scifi_fantasy",
+	"Show_Name": "Terminator: SCC",
+	"Network": "FOX",
+	"Years": "1",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_819203",
+	"ShowType_ID": "TYPE_20",
+	"show_type": "animated_comedy",
+	"Show_Name": "Family Guy",
+	"Network": "FOX",
+	"Years": "6",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_829304",
+	"ShowType_ID": "TYPE_20",
+	"show_type": "animated_comedy",
+	"Show_Name": "The Simpsons",
+	"Network": "FOX",
+	"Years": "19",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_829305",
+	"ShowType_ID": "TYPE_01",
+	"show_type": "drama_serial",
+	"Show_Name": "Glee",
+	"Network": "FOX",
+	"Years": "-1",
+	"Duration_mins": "60",
+	"Blocks_30m": "2"
+  },
+  {
+	"Show_ID": "SHOW_829306",
+	"ShowType_ID": "TYPE_16",
+	"show_type": "sitcom_singlecam",
+	"Show_Name": "Community",
+	"Network": "NBC",
+	"Years": "1",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_829307",
+	"ShowType_ID": "TYPE_16",
+	"show_type": "sitcom_singlecam",
+	"Show_Name": "Parks and Recreation",
+	"Network": "NBC",
+	"Years": "-1",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_829308",
+	"ShowType_ID": "TYPE_20",
+	"show_type": "animated_comedy",
+	"Show_Name": "American Dad!",
+	"Network": "FOX",
+	"Years": "-1",
+	"Duration_mins": "30",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_283747",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "CSI: Miami",
+	"Network": "CBS",
+	"Years": "0",
+	"Duration_mins": "60",
+	"Blocks_30m": "1"
+  },
+  {
+	"Show_ID": "SHOW_283748",
+	"ShowType_ID": "TYPE_17",
+	"show_type": "drama_procedural",
+	"Show_Name": "Law & Order",
+	"Network": "NBC",
+	"Years": "18",
+	"Duration_mins": "60",
+	"Blocks_30m": "1"
+  }
+]
