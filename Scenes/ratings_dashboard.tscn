@@ -1,0 +1,145 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2k8ratingsdashboard"]
+
+[ext_resource type="Script" path="res://Scripts/ratings_dashboard.gd" id="1_dashboard"]
+
+[node name="RatingsDashboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dashboard")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Shows" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ShowsFilter" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/Shows"]
+layout_mode = 2
+placeholder_text = "Filter by name, type, or network..."
+
+[node name="ShowsFilterRow2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NetworkLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Shows/ShowsFilterRow2"]
+layout_mode = 2
+text = "Network:"
+
+[node name="ShowsNetworkFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Shows/ShowsFilterRow2"]
+layout_mode = 2
+item_count = 1
+selected = 0
+item_0/text = "All"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 400
+
+[node name="ShowsTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 7
+column_titles_visible = true
+hide_root = true
+allow_rmb_select = true
+
+[node name="ShowDetail" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail"]
+layout_mode = 2
+
+[node name="DetailVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail/DetailScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="DetailLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail/DetailScroll/DetailVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="People" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PeopleFilter" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/People"]
+layout_mode = 2
+placeholder_text = "Filter people by name or show..."
+
+[node name="PeopleTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/People"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 18
+column_titles_visible = true
+hide_root = true
+allow_rmb_select = true
+
+[node name="Schedule" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ScheduleFilterRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Schedule"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+layout_mode = 2
+text = "Day:"
+
+[node name="ScheduleDayFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+layout_mode = 2
+item_count = 8
+selected = 0
+item_0/text = "All"
+item_1/text = "Sun"
+item_2/text = "Mon"
+item_3/text = "Tue"
+item_4/text = "Wed"
+item_5/text = "Thu"
+item_6/text = "Fri"
+item_7/text = "Sat"
+
+[node name="NetworkLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+layout_mode = 2
+text = "Network:"
+
+[node name="ScheduleNetworkFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+layout_mode = 2
+item_count = 1
+selected = 0
+item_0/text = "All"
+
+[node name="ScheduleTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Schedule"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 10
+column_titles_visible = true
+hide_root = true
+allow_rmb_select = true

@@ -114,6 +114,14 @@ static func build_show_object(show_name, people, contracts, shows, showtypes):
 				"traits": extract_actor_traits(person)
 			})
 
+		elif role == "Host" and show_type == "talk_late_night":
+			# For Talk Late Night, Host is treated as a lead actor for scoring.
+			actors.append({
+				"name": person["Person_Name"],
+				"role": "lead",
+				"traits": extract_actor_traits(person)
+			})
+
 		elif role == "Head Writer":
 			writers.append({
 				"name": person["Person_Name"],

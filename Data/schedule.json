@@ -1,0 +1,650 @@
+{
+  "NET_01": {
+    "4": [
+      {
+        "time": "22:00",
+        "show": "SHOW_736291",
+        "blocks": 1
+      },
+      {
+        "time": "18:30",
+        "show": "SHOW_119283",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_172839",
+        "blocks": 4
+      },
+      {
+        "time": "00:00",
+        "show": "SHOW_839406",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_837461",
+        "blocks": 1
+      },
+      {
+        "time": "11:00",
+        "show": "SHOW_574839",
+        "blocks": 2
+      }
+    ],
+    "0": [
+      {
+        "time": "18:30",
+        "show": "SHOW_119283",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_172839",
+        "blocks": 4
+      },
+      {
+        "time": "00:00",
+        "show": "SHOW_839406",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_837461",
+        "blocks": 1
+      },
+      {
+        "time": "11:00",
+        "show": "SHOW_574839",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_928374",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_736251",
+        "blocks": 2
+      },
+      {
+        "time": "21:30",
+        "show": "SHOW_584729",
+        "blocks": 1
+      }
+    ],
+    "1": [
+      {
+        "time": "18:30",
+        "show": "SHOW_119283",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_172839",
+        "blocks": 4
+      },
+      {
+        "time": "00:00",
+        "show": "SHOW_839406",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_837461",
+        "blocks": 1
+      },
+      {
+        "time": "11:00",
+        "show": "SHOW_574839",
+        "blocks": 2
+      },
+      {
+        "time": "22:00",
+        "show": "SHOW_374820",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_182937",
+        "blocks": 2
+      }
+    ],
+    "2": [
+      {
+        "time": "18:30",
+        "show": "SHOW_119283",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_172839",
+        "blocks": 4
+      },
+      {
+        "time": "00:00",
+        "show": "SHOW_839406",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_837461",
+        "blocks": 1
+      },
+      {
+        "time": "11:00",
+        "show": "SHOW_574839",
+        "blocks": 2
+      },
+      {
+        "time": "22:00",
+        "show": "SHOW_182930",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_192830",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_475830",
+        "blocks": 1
+      }
+    ],
+    "3": [
+      {
+        "time": "18:30",
+        "show": "SHOW_119283",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_172839",
+        "blocks": 4
+      },
+      {
+        "time": "00:00",
+        "show": "SHOW_839406",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_837461",
+        "blocks": 1
+      },
+      {
+        "time": "11:00",
+        "show": "SHOW_574839",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_637485",
+        "blocks": 2
+      }
+    ],
+    "6": [
+      {
+        "time": "21:00",
+        "show": "SHOW_102939",
+        "blocks": 2
+      },
+      {
+        "time": "09:00",
+        "show": "SHOW_283740",
+        "blocks": 2
+      }
+    ]
+  },
+  "NET_03": {
+    "4": [
+      {
+        "time": "21:00",
+        "show": "SHOW_263748",
+        "blocks": 2
+      },
+      {
+        "time": "01:30",
+        "show": "SHOW_657382",
+        "blocks": 2
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_293841",
+        "blocks": 2
+      },
+      {
+        "time": "18:30",
+        "show": "SHOW_503928",
+        "blocks": 1
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_102839",
+        "blocks": 2
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_647321",
+        "blocks": 4
+      }
+    ],
+    "0": [
+      {
+        "time": "01:30",
+        "show": "SHOW_657382",
+        "blocks": 2
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_293841",
+        "blocks": 2
+      },
+      {
+        "time": "18:30",
+        "show": "SHOW_503928",
+        "blocks": 1
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_102839",
+        "blocks": 2
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_647321",
+        "blocks": 4
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_384950",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_293840",
+        "blocks": 2
+      }
+    ],
+    "1": [
+      {
+        "time": "01:30",
+        "show": "SHOW_657382",
+        "blocks": 2
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_293841",
+        "blocks": 2
+      },
+      {
+        "time": "18:30",
+        "show": "SHOW_503928",
+        "blocks": 1
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_102839",
+        "blocks": 2
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_647321",
+        "blocks": 4
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_203948",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_657483",
+        "blocks": 2
+      },
+      {
+        "time": "22:00",
+        "show": "SHOW_928371",
+        "blocks": 2
+      }
+    ],
+    "2": [
+      {
+        "time": "01:30",
+        "show": "SHOW_657382",
+        "blocks": 2
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_293841",
+        "blocks": 2
+      },
+      {
+        "time": "18:30",
+        "show": "SHOW_503928",
+        "blocks": 1
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_102839",
+        "blocks": 2
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_647321",
+        "blocks": 4
+      },
+      {
+        "time": "22:00",
+        "show": "SHOW_482910",
+        "blocks": 1
+      }
+    ],
+    "3": [
+      {
+        "time": "01:30",
+        "show": "SHOW_657382",
+        "blocks": 2
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_293841",
+        "blocks": 2
+      },
+      {
+        "time": "18:30",
+        "show": "SHOW_503928",
+        "blocks": 1
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_102839",
+        "blocks": 2
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_647321",
+        "blocks": 4
+      },
+      {
+        "time": "21:30",
+        "show": "SHOW_584739",
+        "blocks": 1
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_384759",
+        "blocks": 1
+      }
+    ],
+    "5": [
+      {
+        "time": "23:30",
+        "show": "SHOW_928345",
+        "blocks": 2
+      }
+    ],
+    "6": [
+      {
+        "time": "09:00",
+        "show": "SHOW_647389",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_364758",
+        "blocks": 6
+      }
+    ]
+  },
+  "NET_02": {
+    "0": [
+      {
+        "time": "18:30",
+        "show": "SHOW_475869",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_928310",
+        "blocks": 4
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_172830",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_584740",
+        "blocks": 2
+      },
+      {
+        "time": "22:00",
+        "show": "SHOW_748293",
+        "blocks": 2
+      },
+      {
+        "time": "20:30",
+        "show": "SHOW_475829",
+        "blocks": 1
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_584721",
+        "blocks": 1
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_938472",
+        "blocks": 1
+      }
+    ],
+    "1": [
+      {
+        "time": "18:30",
+        "show": "SHOW_475869",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_928310",
+        "blocks": 4
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_172830",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_584740",
+        "blocks": 2
+      },
+      {
+        "time": "22:00",
+        "show": "SHOW_938475",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_293874",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_637429",
+        "blocks": 2
+      }
+    ],
+    "2": [
+      {
+        "time": "18:30",
+        "show": "SHOW_475869",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_928310",
+        "blocks": 4
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_172830",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_584740",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_596847",
+        "blocks": 2
+      }
+    ],
+    "3": [
+      {
+        "time": "18:30",
+        "show": "SHOW_475869",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_928310",
+        "blocks": 4
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_172830",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_584740",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_283746",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_748290",
+        "blocks": 2
+      }
+    ],
+    "4": [
+      {
+        "time": "18:30",
+        "show": "SHOW_475869",
+        "blocks": 1
+      },
+      {
+        "time": "07:00",
+        "show": "SHOW_928310",
+        "blocks": 4
+      },
+      {
+        "time": "00:30",
+        "show": "SHOW_172830",
+        "blocks": 2
+      },
+      {
+        "time": "23:30",
+        "show": "SHOW_584740",
+        "blocks": 2
+      }
+    ],
+    "6": [
+      {
+        "time": "19:00",
+        "show": "SHOW_839405",
+        "blocks": 2
+      },
+      {
+        "time": "09:00",
+        "show": "SHOW_493827",
+        "blocks": 2
+      }
+    ]
+  },
+  "NET_04": {
+    "0": [
+      {
+        "time": "22:00",
+        "show": "SHOW_102938",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_475820",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_203941",
+        "blocks": 2
+      }
+    ],
+    "5": [
+      {
+        "time": "00:00",
+        "show": "SHOW_182934",
+        "blocks": 2
+      }
+    ],
+    "6": [
+      {
+        "time": "21:00",
+        "show": "SHOW_819203",
+        "blocks": 1
+      },
+      {
+        "time": "09:00",
+        "show": "SHOW_374829",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_829304",
+        "blocks": 1
+      }
+    ],
+    "3": [
+      {
+        "time": "21:00",
+        "show": "SHOW_584736",
+        "blocks": 2
+      },
+      {
+        "time": "20:00",
+        "show": "SHOW_102835",
+        "blocks": 2
+      }
+    ],
+    "1": [
+      {
+        "time": "20:00",
+        "show": "SHOW_102834",
+        "blocks": 2
+      },
+      {
+        "time": "21:00",
+        "show": "SHOW_584930",
+        "blocks": 2
+      }
+    ],
+    "2": [
+      {
+        "time": "20:00",
+        "show": "SHOW_564738",
+        "blocks": 2
+      }
+    ]
+  }
+}

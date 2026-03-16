@@ -30,24 +30,44 @@ class_name RatingEngine
 const ACTOR_WEIGHTS = {
 
 	"sitcom_multicam": {
-		"P":0.15, "C":0.10, "W":0.10, "I":0.05,
-		"ED":0.05, "DC":0.15, "SH":0.20, "CT":0.20
+	"P":0.15, "C":0.10, "W":0.10, "I":0.05,
+	"ED":0.05, "DC":0.15, "SH":0.20, "CT":0.20
 	},
 
 	"sitcom_singlecam": {
-		"P":0.12, "C":0.10, "W":0.15, "I":0.05,
-		"ED":0.12, "DC":0.10, "SH":0.20, "CT":0.16
+	"P":0.12, "C":0.10, "W":0.15, "I":0.05,
+	"ED":0.12, "DC":0.10, "SH":0.20, "CT":0.16
 	},
 
 	"animated_comedy": {
-		"P":0.10, "C":0.10, "W":0.10, "I":0.05,
-		"ED":0.20, "DC":0.25, "SH":0.10, "CT":0.10
+	"P":0.00, "C":0.05, "W":0.05, "I":0.05,
+	"ED":0.15, "DC":0.20, "SH":0.20, "CT":0.30
 	},
 
 	"sketch_comedy": {
-		"P":0.15, "C":0.10, "W":0.20, "I":0.10,
-		"ED":0.05, "DC":0.10, "SH":0.15, "CT":0.15
-	}
+	"P":0.15, "C":0.20, "W":0.20, "I":0.05,
+	"ED":0.05, "DC":0.05, "SH":0.15, "CT":0.15
+	},
+
+	"drama_serial": {
+	"P":0.15, "C":0.10, "W":0.05, "I":0.20,
+	"ED":0.30, "DC":0.15, "SH":0.05, "CT":0.00
+	},
+
+	"drama_procedural": {
+	"P":0.20, "C":0.20, "W":0.05, "I":0.10,
+	"ED":0.15, "DC":0.20, "SH":0.05, "CT":0.05
+	},
+
+	"drama_scifi_fantasy": {
+	"P":0.15, "C":0.10, "W":0.05, "I":0.20,
+	"ED":0.15, "DC":0.25, "SH":0.05, "CT":0.00
+	},
+
+	"talk_late_night": {
+	"P":0.10, "C":0.10, "W":0.25, "I":0.00,
+	"SH":0.25, "CT":0.10, "BF":0.20, "ED":0.00
+	},
 }
 
 
@@ -76,166 +96,6 @@ const SHOWRUNNER_WEIGHTS = {
 	"DC":0.10,
 	"SH":0.05
 }
-
-
-###############################################################
-# compute_actor_score
-#
-# Calculates an actor's score based on their traits
-# and the show type.
-###############################################################
-
-static func compute_actor_score(traits:Dictionary, show_type:String):
-
-	var w = ACTOR_WEIGHTS.get(show_type, ACTOR_WEIGHTS["sitcom_singlecam"])
-
-	return (
-		traits.get("P",0)  * w["P"] +
-		traits.get("C",0)  * w["C"] +
-		traits.get("W",0)  * w["W"] +
-		traits.get("I",0)  * w["I"] +
-		traits.get("ED",0) * w["ED"] +
-		traits.get("DC",0) * w["DC"] +
-		traits.get("SH",0) * w["SH"] +
-		traits.get("CT",0) * w["CT"]
-	)
-
-
-###############################################################
-# compute_writer_score
-###############################################################
-
-static func compute_writer_score(traits:Dictionary):
-
-	return (
-		traits.get("W",0)  * WRITER_WEIGHTS["W"] +
-		traits.get("ED",0) * WRITER_WEIGHTS["ED"] +
-		traits.get("DC",0) * WRITER_WEIGHTS["DC"] +
-		traits.get("SH",0) * WRITER_WEIGHTS["SH"]
-	)
-
-
-###############################################################
-# compute_showrunner_score
-###############################################################
-
-static func compute_showrunner_score(traits:Dictionary):
-
-	return (
-		traits.get("C",0)  * SHOWRUNNER_WEIGHTS["C"] +
-		traits.get("W",0)  * SHOWRUNNER_WEIGHTS["W"] +
-		traits.get("CC",0) * SHOWRUNNER_WEIGHTS["CC"] +
-		traits.get("LC",0) * SHOWRUNNER_WEIGHTS["LC"] +
-		traits.get("ED",0) * SHOWRUNNER_WEIGHTS["ED"] +
-		traits.get("DC",0) * SHOWRUNNER_WEIGHTS["DC"] +
-		traits.get("SH",0) * SHOWRUNNER_WEIGHTS["SH"]
-	)
-
-
-###############################################################
-# compute_cast_score
-#
-# Lead actors count more than supporting actors.
-###############################################################
-
-static func compute_cast_score(lead_scores:Array, support_scores:Array):
-
-	var lead_avg = 0.0
-	var support_avg = 0.0
-
-	if lead_scores.size() > 0:
-		lead_avg = lead_scores.reduce(func(a,b): return a+b) / lead_scores.size()
-
-	if support_scores.size() > 0:
-		support_avg = support_scores.reduce(func(a,b): return a+b) / support_scores.size()
-
-	if lead_scores.is_empty() and support_scores.is_empty():
-		return 0
-
-	if support_scores.is_empty():
-		return lead_avg
-
-	if lead_scores.is_empty():
-		return support_avg
-
-	return 0.6 * lead_avg + 0.4 * support_avg
-
-
-###############################################################
-# compute_writing_score
-#
-# Handles writing room weighting.
-###############################################################
-
-static func compute_writing_score(writer_entries:Array):
-
-	var weighted_sum = 0.0
-	var room_size = 0.0
-
-	for w in writer_entries:
-
-		var weight = 1.0
-
-		if w["role"] == "head":
-			weight = 1.5
-
-		if w["role"] == "showrunner":
-			weight = 2.0
-
-		weighted_sum += w["score"] * weight
-		room_size += weight
-
-	var base_avg = weighted_sum / room_size
-
-	var raw_factor = min(room_size / 6.0, 1.0)
-	var room_factor = 0.5 + 0.5 * raw_factor
-
-	return base_avg * room_factor
-
-
-###############################################################
-# aggregate_showrunner_scores
-#
-# JS equivalent:
-# aggregateShowrunnerScores(scores)
-#
-# Handles cases where there are:
-# 0 showrunners
-# 1 showrunner
-# multiple showrunners
-###############################################################
-
-static func aggregate_showrunner_scores(scores:Array):
-
-	# Case 1: no showrunners exist
-	# In JS this would return NaN, but in Godot we return 0
-	if scores.size() == 0:
-		return 0
-
-	# Case 2: exactly one showrunner
-	if scores.size() == 1:
-		return scores[0]
-
-	# Case 3: multiple showrunners
-	var total = 0.0
-
-	for s in scores:
-		total += s
-
-	return total / scores.size()
-	
-	###############################################################
-# compute_base_show_quality
-###############################################################
-
-static func compute_base_show_quality(cast_score, writing_score, showrunner_score):
-
-	return (
-		0.5 * cast_score +
-		0.3 * writing_score +
-		0.2 * showrunner_score
-	)
-
 
 ###############################################################
 # rate_show
@@ -349,3 +209,166 @@ static func rate_show(show:Dictionary):
 		"showrunnerScore": showrunner_score,
 		"baseShowQuality": base_show_quality
 	}
+
+###############################################################
+# compute_base_show_quality
+###############################################################
+
+static func compute_base_show_quality(cast_score, writing_score, showrunner_score):
+
+	return (
+		0.5 * cast_score +
+		0.3 * writing_score +
+		0.2 * showrunner_score
+	)
+
+###############################################################
+# compute_cast_score
+#
+# Lead actors count more than supporting actors.
+###############################################################
+
+static func compute_cast_score(lead_scores:Array, support_scores:Array):
+
+	var lead_avg = 0.0
+	var support_avg = 0.0
+
+	if lead_scores.size() > 0:
+		lead_avg = lead_scores.reduce(func(a,b): return a+b) / lead_scores.size()
+
+	if support_scores.size() > 0:
+		support_avg = support_scores.reduce(func(a,b): return a+b) / support_scores.size()
+
+	if lead_scores.is_empty() and support_scores.is_empty():
+		return 0
+
+	if support_scores.is_empty():
+		return lead_avg
+
+	if lead_scores.is_empty():
+		return support_avg
+
+	return 0.6 * lead_avg + 0.4 * support_avg
+
+
+###############################################################
+# compute_writing_score
+#
+# Handles writing room weighting.
+###############################################################
+
+static func compute_writing_score(writer_entries:Array):
+
+	var weighted_sum = 0.0
+	var room_size = 0.0
+
+	for w in writer_entries:
+
+		var weight = 1.0
+
+		if w["role"] == "head":
+			weight = 1.5
+
+		if w["role"] == "showrunner":
+			weight = 2.0
+
+		weighted_sum += w["score"] * weight
+		room_size += weight
+
+	var base_avg = weighted_sum / room_size
+
+	var raw_factor = min(room_size / 6.0, 1.0)
+	var room_factor = 0.5 + 0.5 * raw_factor
+
+	return base_avg * room_factor
+
+
+###############################################################
+# aggregate_showrunner_scores
+#
+# JS equivalent:
+# aggregateShowrunnerScores(scores)
+#
+# Handles cases where there are:
+# 0 showrunners
+# 1 showrunner
+# multiple showrunners
+###############################################################
+
+static func aggregate_showrunner_scores(scores:Array):
+
+	# Case 1: no showrunners exist
+	# In JS this would return NaN, but in Godot we return 0
+	if scores.size() == 0:
+		return 0
+
+	# Case 2: exactly one showrunner
+	if scores.size() == 1:
+		return scores[0]
+
+	# Case 3: multiple showrunners
+	var total = 0.0
+
+	for s in scores:
+		total += s
+
+	return total / scores.size()
+
+###############################################################
+# compute_actor_score
+#
+# Calculates an actor's score based on their traits
+# and the show type.
+###############################################################
+
+static func compute_actor_score(traits:Dictionary, show_type:String):
+
+	# Stop immediately if this show type has no actor scoring rules
+	if not ACTOR_WEIGHTS.has(show_type):
+		return 0
+
+	# Only retrieve weights after confirming they exist
+	var w = ACTOR_WEIGHTS[show_type]
+
+
+	return (
+		traits.get("P",0)  * w.get("P",0) +
+		traits.get("C",0)  * w.get("C",0) +
+		traits.get("W",0)  * w.get("W",0) +
+		traits.get("I",0)  * w.get("I",0) +
+		traits.get("ED",0) * w.get("ED",0) +
+		traits.get("DC",0) * w.get("DC",0) +
+		traits.get("SH",0) * w.get("SH",0) +
+		traits.get("CT",0) * w.get("CT",0)
+	)
+
+
+###############################################################
+# compute_writer_score
+###############################################################
+
+static func compute_writer_score(traits:Dictionary):
+
+	return (
+		traits.get("W",0)  * WRITER_WEIGHTS["W"] +
+		traits.get("ED",0) * WRITER_WEIGHTS["ED"] +
+		traits.get("DC",0) * WRITER_WEIGHTS["DC"] +
+		traits.get("SH",0) * WRITER_WEIGHTS["SH"]
+	)
+
+
+###############################################################
+# compute_showrunner_score
+###############################################################
+
+static func compute_showrunner_score(traits:Dictionary):
+
+	return (
+		traits.get("C",0)  * SHOWRUNNER_WEIGHTS["C"] +
+		traits.get("W",0)  * SHOWRUNNER_WEIGHTS["W"] +
+		traits.get("CC",0) * SHOWRUNNER_WEIGHTS["CC"] +
+		traits.get("LC",0) * SHOWRUNNER_WEIGHTS["LC"] +
+		traits.get("ED",0) * SHOWRUNNER_WEIGHTS["ED"] +
+		traits.get("DC",0) * SHOWRUNNER_WEIGHTS["DC"] +
+		traits.get("SH",0) * SHOWRUNNER_WEIGHTS["SH"]
+	)
