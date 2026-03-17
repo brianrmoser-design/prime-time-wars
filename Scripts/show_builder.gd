@@ -14,7 +14,11 @@ static func extract_actor_traits(person):
 		"ED": float(person.get("traits.ED", 0)),
 		"DC": float(person.get("traits.DC", 0)),
 		"SH": float(person.get("traits.SH", 0)),
-		"CT": float(person.get("traits.CT", 0))
+		"CT": float(person.get("traits.CT", 0)),
+		"TI": float(person.get("traits.TI", 0)),
+		"BF": float(person.get("traits.BF", 0)),
+		"LC": float(person.get("traits.LC", 0)),
+		"CC": float(person.get("traits.CC", 0))
 	}
 
 
@@ -114,11 +118,19 @@ static func build_show_object(show_name, people, contracts, shows, showtypes):
 				"traits": extract_actor_traits(person)
 			})
 
-		elif role == "Host" and show_type == "talk_late_night":
-			# For Talk Late Night, Host is treated as a lead actor for scoring.
+		elif role in ["Host", "Anchor"]:
+			# Hosts and anchors are scored as lead on-air talent (talk, news, reality, sports).
 			actors.append({
 				"name": person["Person_Name"],
 				"role": "lead",
+				"traits": extract_actor_traits(person)
+			})
+
+		elif role in ["Co-Host", "Reporter"]:
+			# Co-hosts and reporters are scored as support on-air talent.
+			actors.append({
+				"name": person["Person_Name"],
+				"role": "support",
 				"traits": extract_actor_traits(person)
 			})
 

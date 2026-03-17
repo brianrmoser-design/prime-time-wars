@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bk2bvxdug46i6"
+
+[deps]
+
+files=["res://exports/actor_weights.P.translation", "res://exports/actor_weights.en.translation", "res://exports/actor_weights.W.translation", "res://exports/actor_weights.I.translation", "res://exports/actor_weights.ED.translation", "res://exports/actor_weights.DC.translation", "res://exports/actor_weights.SH.translation", "res://exports/actor_weights.CT.translation", "res://exports/actor_weights.TI.translation", "res://exports/actor_weights.BF.translation", "res://exports/actor_weights.LC.translation", "res://exports/actor_weights.CC.translation"]
+
+source_file="res://exports/actor_weights.csv"
+dest_files=["res://exports/actor_weights.P.translation", "res://exports/actor_weights.en.translation", "res://exports/actor_weights.W.translation", "res://exports/actor_weights.I.translation", "res://exports/actor_weights.ED.translation", "res://exports/actor_weights.DC.translation", "res://exports/actor_weights.SH.translation", "res://exports/actor_weights.CT.translation", "res://exports/actor_weights.TI.translation", "res://exports/actor_weights.BF.translation", "res://exports/actor_weights.LC.translation", "res://exports/actor_weights.CC.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

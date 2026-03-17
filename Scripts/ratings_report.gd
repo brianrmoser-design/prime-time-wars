@@ -113,9 +113,7 @@ static func get_all_people_with_scores() -> Array:
 			var role = c["Role"]
 			var show_type = show_type_by_name.get(show_name, "")
 
-			var is_actor_role = (role == "Lead Actor" or role == "Support Actor")
-			if not is_actor_role and show_type == "talk_late_night" and role == "Host":
-				is_actor_role = true
+			var is_actor_role = (role == "Lead Actor" or role == "Support Actor" or role in ["Host", "Anchor", "Co-Host", "Reporter"])
 
 			if not is_actor_role:
 				continue
@@ -123,8 +121,10 @@ static func get_all_people_with_scores() -> Array:
 			var traits = ShowBuilder.extract_actor_traits(p)
 			var actor_score = RatingEngine.compute_actor_score(traits, show_type)
 			var role_key = "lead"
-			if role == "Support Actor" or role == "Host":
-				role_key = "support" if role == "Support Actor" else "lead"
+			if role in ["Support Actor", "Co-Host", "Reporter"]:
+				role_key = "support"
+			elif role in ["Lead Actor", "Host", "Anchor"]:
+				role_key = "lead"
 
 			row["assignments"].append({
 				"show_name": show_name,

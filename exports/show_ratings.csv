@@ -1,0 +1,69 @@
+show_name,show_type,type_name,network,cast_score,writing_score,showrunner_score,base_show_quality
+24,drama_serial,Drama (Serialized),FOX,79.24,70.0307692307692,81.875,77.0042307692308
+Boston Legal,drama_serial,Drama (Serialized),ABC,81.4,72.5659090909091,94.0,81.2697727272727
+Brothers & Sisters,drama_serial,Drama (Serialized),ABC,82.15,72.345,78.8,78.5385
+Desperate Housewives,drama_serial,Drama (Serialized),ABC,77.2966666666667,77.6,82.85,78.4983333333333
+ER,drama_serial,Drama (Serialized),NBC,76.7525,70.0041666666667,87.7,76.9175
+Friday Night Lights,drama_serial,Drama (Serialized),NBC,76.475,61.8333333333333,0,56.7875
+Grey's Anatomy,drama_serial,Drama (Serialized),ABC,75.37,74.097619047619,84.85,76.8842857142857
+Prison Break,drama_serial,Drama (Serialized),FOX,70.84,67.971052631579,76.4,71.0913157894737
+Private Practice,drama_serial,Drama (Serialized),ABC,75.325,67.69,84.85,74.9395
+How I Met Your Mother,sitcom_multicam,Sitcom (Multi-Cam),CBS,73.8925,71.8695652173913,77.325,73.9721195652174
+The Big Bang Theory,sitcom_multicam,Sitcom (Multi-Cam),CBS,73.49,73.6047619047619,88.1,76.4464285714286
+Two and a Half Men,sitcom_multicam,Sitcom (Multi-Cam),CBS,77.5266666666667,75.6944444444444,88.1,79.0916666666667
+MADtv,sketch_comedy,Sketch Comedy,FOX,73.1333333333333,70.6145833333333,79.15,73.5810416666667
+Saturday Night Live,sketch_comedy,Sketch Comedy,NBC,79.2328571428571,77.5470588235294,90.25,80.9305462184874
+Jimmy Kimmel Live!,talk_late_night,Late Night Talk,ABC,76.55,64.1026315789474,71.35,71.7757894736842
+Last Call with Carson Daly,talk_late_night,Late Night Talk,NBC,76.9,36.8125,0,49.49375
+Late Night,talk_late_night,Late Night Talk,NBC,92.9,66.2416666666667,69.8,80.2825
+The Late Late Show,talk_late_night,Late Night Talk,CBS,90.45,68.05,82.55,82.15
+The Late Show,talk_late_night,Late Night Talk,CBS,96.55,65.79375,80.8,84.173125
+The Tonight Show,talk_late_night,Late Night Talk,NBC,84.6,52.8105263157895,69.85,72.1131578947368
+20/20,news_evening,Evening News,ABC,78.825,nan,0,nan
+ABC World News Tonight,news_evening,Evening News,ABC,88.8,nan,0,nan
+CBS Evening News,news_evening,Evening News,CBS,81.05,nan,0,nan
+Dateline,news_evening,Evening News,NBC,79.374,nan,0,nan
+NBC Nightly News,news_evening,Evening News,NBC,82.75,nan,0,nan
+Good Morning America,news_morning,Morning Show,ABC,75.35,nan,0,nan
+The Early Show,news_morning,Morning Show,CBS,71.9333333333333,nan,0,nan
+Today,news_morning,Morning Show,NBC,82.925,nan,0,nan
+60 Minutes,news_magazine,News Magazine,CBS,80.0375,nan,0,nan
+Nightline,news_overnight,Overnight News,ABC,69.3,nan,0,nan
+Face the Nation,news_political,Political Sunday,CBS,89.95,nan,0,nan
+Fox News Sunday,news_political,Political Sunday,FOX,81.2,nan,0,nan
+Meet the Press,news_political,Political Sunday,NBC,86.3,nan,0,nan
+This Week,news_political,Political Sunday,ABC,82.3,nan,0,nan
+Kitchen Nightmares,reality_show,Reality Show,FOX,82.0,nan,0,nan
+America's Got Talent,reality_competition,Reality Competition,NBC,76.3,nan,0,nan
+American Idol,reality_competition,Reality Competition,FOX,65.7,nan,0,nan
+Big Brother,reality_competition,Reality Competition,CBS,73.7,nan,0,nan
+Dancing with the Stars,reality_competition,Reality Competition,ABC,60.14,nan,0,nan
+Survivor,reality_competition,Reality Competition,CBS,63.7,nan,0,nan
+Wipeout,reality_competition,Reality Competition,ABC,62.75,nan,0,nan
+Sunday Night Football,sports_live,Live Sports,NBC,81.64,nan,0,nan
+The View,talk_panel,News Talk Panel,ABC,0,nan,0,nan
+30 Rock,sitcom_singlecam,Sitcom (Single-Cam),NBC,78.489,77.9,84.9,79.5945
+Samantha Who?,sitcom_singlecam,Sitcom (Single-Cam),ABC,76.164,69.4105263157895,0,58.9051578947368
+The Office,sitcom_singlecam,Sitcom (Single-Cam),NBC,75.4916666666667,76.4346153846154,85.65,77.806217948718
+Ugly Betty,sitcom_singlecam,Sitcom (Single-Cam),ABC,74.86,72.8142857142857,80.7,75.4142857142857
+Bones,drama_procedural,Drama (Procedural),FOX,70.35,71.1117647058824,80.25,72.5585294117647
+Criminal Minds,drama_procedural,Drama (Procedural),CBS,71.74,66.3477272727273,78.25,71.4243181818182
+CSI: Crime Scene Investigation,drama_procedural,Drama (Procedural),CBS,76.99,70.145,82.95,76.1285
+House,drama_procedural,Drama (Procedural),FOX,83.684,75.1857142857143,85.4,81.4777142857143
+Law & Order: SVU,drama_procedural,Drama (Procedural),NBC,78.46,68.7775,83.4,76.54325
+NCIS,drama_procedural,Drama (Procedural),CBS,73.4333333333333,65.1519230769231,76.45,71.5522435897436
+The Mentalist,drama_procedural,Drama (Procedural),CBS,70.7,67.7166666666667,79.85,71.635
+Chuck,drama_scifi_fantasy,Sci-Fi / Fantasy,NBC,64.29,71.86,81.6,70.023
+Fringe,drama_scifi_fantasy,Sci-Fi / Fantasy,FOX,71.855,71.8138888888889,87.6,74.9916666666667
+Ghost Whisperer,drama_scifi_fantasy,Sci-Fi / Fantasy,CBS,64.75,64.4666666666667,77.7,67.255
+Heroes,drama_scifi_fantasy,Sci-Fi / Fantasy,NBC,67.834,68.5815789473684,77.2,69.9314736842105
+Lost,drama_scifi_fantasy,Sci-Fi / Fantasy,ABC,71.727,75.1772727272727,84.125,75.2416818181818
+Terminator: SCC,drama_scifi_fantasy,Sci-Fi / Fantasy,FOX,67.055,69.7833333333333,77.1,69.8825
+Family Guy,animated_comedy,Animated Series,FOX,0,71.7678571428571,82.65,38.0603571428571
+The Simpsons,animated_comedy,Animated Series,FOX,80.89,75.9310344827586,84.7,80.1643103448276
+Glee,drama_serial,Drama (Serialized),FOX,70.268,73.2166666666667,63.9666666666667,69.8923333333333
+Community,sitcom_singlecam,Sitcom (Single-Cam),NBC,0,71.9868421052632,59.95,33.586052631579
+Parks and Recreation,sitcom_singlecam,Sitcom (Single-Cam),NBC,0,73.8846153846154,0,22.1653846153846
+American Dad!,animated_comedy,Animated Series,FOX,0,52.0875,0,15.62625
+CSI: Miami,drama_procedural,Drama (Procedural),CBS,0,45.8666666666667,79.7,29.7
+Law & Order,drama_procedural,Drama (Procedural),NBC,76.922,72.3666666666666,81.7,76.511

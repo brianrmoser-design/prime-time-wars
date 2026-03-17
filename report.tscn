@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c51ijd731tkji"]
+
+[ext_resource type="Script" uid="uid://bump6cp3ox55q" path="res://Scripts/ratings_report.gd" id="1_mmd0k"]
+
+[node name="Report" type="Node" unique_id=1245273472]
+script = ExtResource("1_mmd0k")

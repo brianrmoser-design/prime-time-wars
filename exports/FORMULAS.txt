@@ -1,0 +1,65 @@
+========================================
+GOOGLE SHEETS FORMULAS - Prime Time Wars
+========================================
+
+1. IMPORT THE CSVs
+   File > Import > Upload each CSV as a new sheet.
+   Name the sheets: ActorWeights, WriterWeights, ShowrunnerWeights, ShowRatings.
+
+2. SHEET LAYOUT (after import)
+   ActorWeights:  Row 1 = headers. Col A = show_type, B-M = P,C,W,I,ED,DC,SH,CT,TI,BF,LC,CC.
+   WriterWeights: Row 1 = W,ED,DC,SH. Row 2 = weight values.
+   ShowrunnerWeights: Row 1 = C,W,CC,LC,ED,DC,SH. Row 2 = weight values.
+   ShowRatings:  One row per show with scores (use as reference to check your formulas).
+
+3. ACTOR SCORE (one row per cast member)
+   Add a sheet with: Col A=name, B=show_type, C=role (lead/support), D-O = traits P through CC.
+   In column P (ActorScore), row 2:
+
+   =IFERROR(SUMPRODUCT(D2:O2,INDEX(ActorWeights!$B$2:$M$100,MATCH(B2,ActorWeights!$A$2:$A$100,0),0)),0)
+
+   Fill down. Change 100 to your last row on ActorWeights if needed.
+
+4. WRITER SCORE (one row per writer)
+   Columns: name, W, ED, DC, SH. Assume W in B2, ED in C2, DC in D2, SH in E2.
+   Writer score in F2:
+
+   =B2*WriterWeights!$B$2+C2*WriterWeights!$C$2+D2*WriterWeights!$D$2+E2*WriterWeights!$E$2
+
+   Or if you prefer SUMPRODUCT with one row of weights in WriterWeights B2:E2:
+   =SUMPRODUCT(B2:E2,WriterWeights!$B$2:$E$2)
+
+5. SHOWRUNNER SCORE (one row per showrunner)
+   Columns: name, C, W, CC, LC, ED, DC, SH. Assume row 2 has traits in B2:H2.
+   Showrunner score in I2:
+
+   =SUMPRODUCT(B2:H2,ShowrunnerWeights!$B$2:$H$2)
+
+6. CAST SCORE (per show)
+   From a table with Col A=show_name, B=role (lead/support), C=actor_score.
+   On a summary sheet, one row per show: Col A=show_name. Cast score in B2:
+
+   =IF(AND(COUNTIFS(SheetName!$A:$A,$A2,SheetName!$B:$B,"lead")=0,COUNTIFS(SheetName!$A:$A,$A2,SheetName!$B:$B,"support")=0),0,IF(COUNTIFS(SheetName!$A:$A,$A2,SheetName!$B:$B,"support")=0,AVERAGEIFS(SheetName!$C:$C,SheetName!$A:$A,$A2,SheetName!$B:$B,"lead"),IF(COUNTIFS(SheetName!$A:$A,$A2,SheetName!$B:$B,"lead")=0,AVERAGEIFS(SheetName!$C:$C,SheetName!$A:$A,$A2,SheetName!$B:$B,"support"),0.6*AVERAGEIFS(SheetName!$C:$C,SheetName!$A:$A,$A2,SheetName!$B:$B,"lead")+0.4*AVERAGEIFS(SheetName!$C:$C,SheetName!$A:$A,$A2,SheetName!$B:$B,"support"))))
+
+   Replace SheetName with the name of the sheet that has show_name, role, actor_score.
+
+7. WRITING SCORE (per show)
+   Table: Col A=show_name, B=writer_role (staff/head/showrunner), C=writer_score.
+   Role weight: 1=staff, 1.5=head, 2=showrunner. In D2: =IF(B2="showrunner",2,IF(B2="head",1.5,1))
+   For one show in row 2 of a summary (show_name in A2), weighted avg then room factor:
+   Weighted sum = SUMPRODUCT of (writer_score * role_weight) for that show.
+   Room size = SUM of role_weight for that show.
+   base_avg = weighted_sum/room_size. room_factor = 0.5+0.5*MIN(room_size/6,1). writing_score = base_avg*room_factor.
+   Easiest: use SUMIFS/COUNTIFS per show or a helper column with role weight, then in summary:
+   (SUMPRODUCT filtered by show) / (SUM of weights for show) * (0.5+0.5*MIN(that sum/6,1)).
+
+8. SHOWRUNNER AGGREGATE (per show)
+   Table: Col A=show_name, B=showrunner_score. Summary row for show in A2:
+   =IF(COUNTIF(SheetName!$A:$A,$A2)=0,0,IF(COUNTIF(SheetName!$A:$A,$A2)=1,INDEX(SheetName!$B:$B,MATCH($A2,SheetName!$A:$A,0)),AVERAGEIF(SheetName!$A:$A,$A2,SheetName!$B:$B)))
+
+9. BASE SHOW QUALITY (per show)
+   Columns: cast_score (B), writing_score (C), showrunner_score (D). In E2:
+
+   =0.5*B2+0.3*C2+0.2*D2
+
+Compare your formula results to the numbers in ShowRatings to verify.

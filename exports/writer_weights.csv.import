@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://6ewvtsvnvg73"
+
+[deps]
+
+files=["res://exports/writer_weights.ED.translation", "res://exports/writer_weights.DC.translation", "res://exports/writer_weights.SH.translation"]
+
+source_file="res://exports/writer_weights.csv"
+dest_files=["res://exports/writer_weights.ED.translation", "res://exports/writer_weights.DC.translation", "res://exports/writer_weights.SH.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

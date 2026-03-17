@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://xmxepgk7m3cv"
+
+[deps]
+
+files=["res://exports/showrunner_weights.W.translation", "res://exports/showrunner_weights.CC.translation", "res://exports/showrunner_weights.LC.translation", "res://exports/showrunner_weights.ED.translation", "res://exports/showrunner_weights.DC.translation", "res://exports/showrunner_weights.SH.translation"]
+
+source_file="res://exports/showrunner_weights.csv"
+dest_files=["res://exports/showrunner_weights.W.translation", "res://exports/showrunner_weights.CC.translation", "res://exports/showrunner_weights.LC.translation", "res://exports/showrunner_weights.ED.translation", "res://exports/showrunner_weights.DC.translation", "res://exports/showrunner_weights.SH.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

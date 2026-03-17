@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://8b1276pyc5pk"
+
+[deps]
+
+files=["res://exports/show_ratings.show.translation", "res://exports/show_ratings.type.translation", "res://exports/show_ratings.network.translation", "res://exports/show_ratings.cast.translation", "res://exports/show_ratings.writing.translation", "res://exports/show_ratings.showrunner.translation", "res://exports/show_ratings.base.translation"]
+
+source_file="res://exports/show_ratings.csv"
+dest_files=["res://exports/show_ratings.show.translation", "res://exports/show_ratings.type.translation", "res://exports/show_ratings.network.translation", "res://exports/show_ratings.cast.translation", "res://exports/show_ratings.writing.translation", "res://exports/show_ratings.showrunner.translation", "res://exports/show_ratings.base.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
