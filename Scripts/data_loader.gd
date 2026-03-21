@@ -3,25 +3,25 @@ class_name DataLoader
 ###############################################################
 # load_data
 #
-# Equivalent to JS loadData()
+# Loads JSON for the active universe (see UniverseConfig autoload).
+# Each universe folder contains: people, contracts, shows, showtypes,
+# schedule, networks — same shapes as before when they lived under Data/.
 #
-# Loads JSON files and returns a dictionary containing:
-# people
-# contracts
-# shows
-# showtypes
-# schedule
-# networks
+# Shared: res://Data/traits.json (used by PersonGenerator, not loaded here).
 ###############################################################
 
-static func load_data():
+static func load_data() -> Dictionary:
+	var root: String = UniverseConfig.get_data_directory()
+	return load_data_from_directory(root)
 
-	var people = load_json("res://data/people.json")
-	var contracts = load_json("res://data/contracts.json")
-	var shows = load_json("res://data/shows.json")
-	var showtypes = load_json("res://data/showtypes.json")
-	var schedule = load_json("res://data/schedule.json")
-	var networks = load_json("res://data/networks.json")
+
+static func load_data_from_directory(root: String) -> Dictionary:
+	var people = load_json("%s/people.json" % root)
+	var contracts = load_json("%s/contracts.json" % root)
+	var shows = load_json("%s/shows.json" % root)
+	var showtypes = load_json("%s/showtypes.json" % root)
+	var schedule = load_json("%s/schedule.json" % root)
+	var networks = load_json("%s/networks.json" % root)
 
 	return {
 		"people": people,
@@ -55,12 +55,18 @@ static func get_show_id_to_name(shows) -> Dictionary:
 # Helper function for reading JSON
 ###############################################################
 
-static func load_json(path):
-
+static func load_json(path: String):
 	var file = FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_error("DataLoader: could not open %s" % path)
+		return null
 	var text = file.get_as_text()
+	file.close()
 
 	var json = JSON.new()
-	json.parse(text)
+	var err = json.parse(text)
+	if err != OK:
+		push_error("DataLoader: JSON parse error in %s: %s" % [path, json.get_error_message()])
+		return null
 
 	return json.get_data()

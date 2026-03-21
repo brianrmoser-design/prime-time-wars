@@ -1,0 +1,640 @@
+{
+	"NET_01": {
+		"4": [
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00021",
+				"blocks": 1
+			},
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00022",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00026",
+				"blocks": 4
+			},
+			{
+				"time": "00:00",
+				"show": "SHOW_FIC_00015",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00030",
+				"blocks": 1
+			},
+			{
+				"time": "11:00",
+				"show": "SHOW_FIC_00043",
+				"blocks": 2
+			}
+		],
+		"0": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00022",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00026",
+				"blocks": 4
+			},
+			{
+				"time": "00:00",
+				"show": "SHOW_FIC_00015",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00030",
+				"blocks": 1
+			},
+			{
+				"time": "11:00",
+				"show": "SHOW_FIC_00043",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00002",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00039",
+				"blocks": 2
+			},
+			{
+				"time": "21:30",
+				"show": "SHOW_FIC_00045",
+				"blocks": 1
+			}
+		],
+		"1": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00022",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00026",
+				"blocks": 4
+			},
+			{
+				"time": "00:00",
+				"show": "SHOW_FIC_00015",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00030",
+				"blocks": 1
+			},
+			{
+				"time": "11:00",
+				"show": "SHOW_FIC_00043",
+				"blocks": 2
+			},
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00059",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00041",
+				"blocks": 2
+			}
+		],
+		"2": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00022",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00026",
+				"blocks": 4
+			},
+			{
+				"time": "00:00",
+				"show": "SHOW_FIC_00015",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00030",
+				"blocks": 1
+			},
+			{
+				"time": "11:00",
+				"show": "SHOW_FIC_00043",
+				"blocks": 2
+			},
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00003",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00009",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00047",
+				"blocks": 1
+			}
+		],
+		"3": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00022",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00026",
+				"blocks": 4
+			},
+			{
+				"time": "00:00",
+				"show": "SHOW_FIC_00015",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00030",
+				"blocks": 1
+			},
+			{
+				"time": "11:00",
+				"show": "SHOW_FIC_00043",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00007",
+				"blocks": 2
+			}
+		],
+		"6": [
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00004",
+				"blocks": 2
+			},
+			{
+				"time": "09:00",
+				"show": "SHOW_FIC_00034",
+				"blocks": 2
+			}
+		]
+	},
+	"NET_03": {
+		"4": [
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00006",
+				"blocks": 2
+			},
+			{
+				"time": "01:30",
+				"show": "SHOW_FIC_00016",
+				"blocks": 2
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00017",
+				"blocks": 2
+			},
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00025",
+				"blocks": 1
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00020",
+				"blocks": 2
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00028",
+				"blocks": 4
+			}
+		],
+		"0": [
+			{
+				"time": "01:30",
+				"show": "SHOW_FIC_00016",
+				"blocks": 2
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00017",
+				"blocks": 2
+			},
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00025",
+				"blocks": 1
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00020",
+				"blocks": 2
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00028",
+				"blocks": 4
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00055",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00058",
+				"blocks": 2
+			}
+		],
+		"1": [
+			{
+				"time": "01:30",
+				"show": "SHOW_FIC_00016",
+				"blocks": 2
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00017",
+				"blocks": 2
+			},
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00025",
+				"blocks": 1
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00020",
+				"blocks": 2
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00028",
+				"blocks": 4
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00036",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00005",
+				"blocks": 2
+			},
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00052",
+				"blocks": 2
+			}
+		],
+		"2": [
+			{
+				"time": "01:30",
+				"show": "SHOW_FIC_00016",
+				"blocks": 2
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00017",
+				"blocks": 2
+			},
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00025",
+				"blocks": 1
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00020",
+				"blocks": 2
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00028",
+				"blocks": 4
+			},
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00024",
+				"blocks": 1
+			}
+		],
+		"3": [
+			{
+				"time": "01:30",
+				"show": "SHOW_FIC_00016",
+				"blocks": 2
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00017",
+				"blocks": 2
+			},
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00025",
+				"blocks": 1
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00020",
+				"blocks": 2
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00028",
+				"blocks": 4
+			},
+			{
+				"time": "21:30",
+				"show": "SHOW_FIC_00044",
+				"blocks": 1
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00046",
+				"blocks": 1
+			}
+		],
+		"5": [
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00014",
+				"blocks": 2
+			}
+		],
+		"6": [
+			{
+				"time": "09:00",
+				"show": "SHOW_FIC_00033",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00042",
+				"blocks": 6
+			}
+		]
+	},
+	"NET_02": {
+		"0": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00023",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00027",
+				"blocks": 4
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00018",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00019",
+				"blocks": 2
+			},
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00038",
+				"blocks": 2
+			},
+			{
+				"time": "20:30",
+				"show": "SHOW_FIC_00010",
+				"blocks": 1
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00011",
+				"blocks": 1
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00012",
+				"blocks": 1
+			}
+		],
+		"1": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00023",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00027",
+				"blocks": 4
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00018",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00019",
+				"blocks": 2
+			},
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00057",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00053",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00054",
+				"blocks": 2
+			}
+		],
+		"2": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00023",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00027",
+				"blocks": 4
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00018",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00019",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00049",
+				"blocks": 2
+			}
+		],
+		"3": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00023",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00027",
+				"blocks": 4
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00018",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00019",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00050",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00040",
+				"blocks": 2
+			}
+		],
+		"4": [
+			{
+				"time": "18:30",
+				"show": "SHOW_FIC_00023",
+				"blocks": 1
+			},
+			{
+				"time": "07:00",
+				"show": "SHOW_FIC_00027",
+				"blocks": 4
+			},
+			{
+				"time": "00:30",
+				"show": "SHOW_FIC_00018",
+				"blocks": 2
+			},
+			{
+				"time": "23:30",
+				"show": "SHOW_FIC_00019",
+				"blocks": 2
+			}
+		],
+		"6": [
+			{
+				"time": "19:00",
+				"show": "SHOW_FIC_00029",
+				"blocks": 2
+			},
+			{
+				"time": "09:00",
+				"show": "SHOW_FIC_00031",
+				"blocks": 2
+			}
+		]
+	},
+	"NET_04": {
+		"0": [
+			{
+				"time": "22:00",
+				"show": "SHOW_FIC_00001",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00008",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00060",
+				"blocks": 2
+			}
+		],
+		"5": [
+			{
+				"time": "00:00",
+				"show": "SHOW_FIC_00013",
+				"blocks": 2
+			}
+		],
+		"6": [
+			{
+				"time": "09:00",
+				"show": "SHOW_FIC_00032",
+				"blocks": 2
+			}
+		],
+		"3": [
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00056",
+				"blocks": 2
+			},
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00035",
+				"blocks": 2
+			}
+		],
+		"1": [
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00037",
+				"blocks": 2
+			},
+			{
+				"time": "21:00",
+				"show": "SHOW_FIC_00051",
+				"blocks": 2
+			}
+		],
+		"2": [
+			{
+				"time": "20:00",
+				"show": "SHOW_FIC_00048",
+				"blocks": 2
+			}
+		]
+	}
+}

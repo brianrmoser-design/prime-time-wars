@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cq1sk7rl83und"
+
+[deps]
+
+files=["res://Data/name_lists/database_first_names.Gender.translation", "res://Data/name_lists/database_first_names.Origin.translation", "res://Data/name_lists/database_first_names.Era.translation", "res://Data/name_lists/database_first_names.Weight.translation"]
+
+source_file="res://Data/name_lists/database_first_names.csv"
+dest_files=["res://Data/name_lists/database_first_names.Gender.translation", "res://Data/name_lists/database_first_names.Origin.translation", "res://Data/name_lists/database_first_names.Era.translation", "res://Data/name_lists/database_first_names.Weight.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

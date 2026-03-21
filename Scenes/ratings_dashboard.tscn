@@ -25,6 +25,18 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 theme_override_constants/separation = 8
 
+[node name="UniverseRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="UniverseLabel" type="Label" parent="MarginContainer/VBoxContainer/UniverseRow"]
+layout_mode = 2
+text = "Universe:"
+
+[node name="UniverseOption" type="OptionButton" parent="MarginContainer/VBoxContainer/UniverseRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

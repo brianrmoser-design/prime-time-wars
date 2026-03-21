@@ -1,0 +1,602 @@
+[
+	{
+		"Show_ID": "SHOW_FIC_00001",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Open Ridge",
+		"Network": "FOX",
+		"Years": "6",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00002",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Silver Beat",
+		"Network": "ABC",
+		"Years": "4",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00003",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Stone Room",
+		"Network": "ABC",
+		"Years": "2",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00004",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Black Falls",
+		"Network": "ABC",
+		"Years": "4",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00005",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Western Street",
+		"Network": "NBC",
+		"Years": "14",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00006",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Broken District",
+		"Network": "NBC",
+		"Years": "2",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00007",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Lost Field",
+		"Network": "ABC",
+		"Years": "4",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00008",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Midnight Crossing",
+		"Network": "FOX",
+		"Years": "3",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00009",
+		"ShowType_ID": "TYPE_01",
+		"show_type": "drama_serial",
+		"Show_Name": "Eastern Place",
+		"Network": "ABC",
+		"Years": "1",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00010",
+		"ShowType_ID": "TYPE_02",
+		"show_type": "sitcom_multicam",
+		"Show_Name": "Black Park",
+		"Network": "CBS",
+		"Years": "3",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00011",
+		"ShowType_ID": "TYPE_02",
+		"show_type": "sitcom_multicam",
+		"Show_Name": "Found Crossing",
+		"Network": "CBS",
+		"Years": "1",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00012",
+		"ShowType_ID": "TYPE_02",
+		"show_type": "sitcom_multicam",
+		"Show_Name": "Perfect Court",
+		"Network": "CBS",
+		"Years": "5",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00013",
+		"ShowType_ID": "TYPE_03",
+		"show_type": "sketch_comedy",
+		"Show_Name": "Winter Mountain",
+		"Network": "FOX",
+		"Years": "13",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00014",
+		"ShowType_ID": "TYPE_03",
+		"show_type": "sketch_comedy",
+		"Show_Name": "Summer Hall",
+		"Network": "NBC",
+		"Years": "33",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00015",
+		"ShowType_ID": "TYPE_04",
+		"show_type": "talk_late_night",
+		"Show_Name": "Great Line",
+		"Network": "ABC",
+		"Years": "5",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00016",
+		"ShowType_ID": "TYPE_04",
+		"show_type": "talk_late_night",
+		"Show_Name": "True Run",
+		"Network": "NBC",
+		"Years": "6",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00017",
+		"ShowType_ID": "TYPE_04",
+		"show_type": "talk_late_night",
+		"Show_Name": "Stone Harbor",
+		"Network": "NBC",
+		"Years": "26",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00018",
+		"ShowType_ID": "TYPE_04",
+		"show_type": "talk_late_night",
+		"Show_Name": "Twin House",
+		"Network": "CBS",
+		"Years": "13",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00019",
+		"ShowType_ID": "TYPE_04",
+		"show_type": "talk_late_night",
+		"Show_Name": "False Order",
+		"Network": "CBS",
+		"Years": "15",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00020",
+		"ShowType_ID": "TYPE_04",
+		"show_type": "talk_late_night",
+		"Show_Name": "Stone Bridge",
+		"Network": "NBC",
+		"Years": "54",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00021",
+		"ShowType_ID": "TYPE_05",
+		"show_type": "news_evening",
+		"Show_Name": "Blue Order",
+		"Network": "ABC",
+		"Years": "17",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00022",
+		"ShowType_ID": "TYPE_05",
+		"show_type": "news_evening",
+		"Show_Name": "Western District",
+		"Network": "ABC",
+		"Years": "60",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00023",
+		"ShowType_ID": "TYPE_05",
+		"show_type": "news_evening",
+		"Show_Name": "Grand Heights",
+		"Network": "CBS",
+		"Years": "67",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00024",
+		"ShowType_ID": "TYPE_05",
+		"show_type": "news_evening",
+		"Show_Name": "Central Fire",
+		"Network": "NBC",
+		"Years": "31",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00025",
+		"ShowType_ID": "TYPE_05",
+		"show_type": "news_evening",
+		"Show_Name": "Found Passage",
+		"Network": "NBC",
+		"Years": "38",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00026",
+		"ShowType_ID": "TYPE_06",
+		"show_type": "news_morning",
+		"Show_Name": "Midnight Club",
+		"Network": "ABC",
+		"Years": "33",
+		"Duration_mins": "120",
+		"Blocks_30m": "4"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00027",
+		"ShowType_ID": "TYPE_06",
+		"show_type": "news_morning",
+		"Show_Name": "High Hall",
+		"Network": "CBS",
+		"Years": "9",
+		"Duration_mins": "120",
+		"Blocks_30m": "4"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00028",
+		"ShowType_ID": "TYPE_06",
+		"show_type": "news_morning",
+		"Show_Name": "Royal Dawn",
+		"Network": "NBC",
+		"Years": "56",
+		"Duration_mins": "120",
+		"Blocks_30m": "4"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00029",
+		"ShowType_ID": "TYPE_07",
+		"show_type": "news_magazine",
+		"Show_Name": "Eastern Gate",
+		"Network": "CBS",
+		"Years": "40",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00030",
+		"ShowType_ID": "TYPE_08",
+		"show_type": "news_overnight",
+		"Show_Name": "Iron River",
+		"Network": "ABC",
+		"Years": "28",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00031",
+		"ShowType_ID": "TYPE_09",
+		"show_type": "news_political",
+		"Show_Name": "Secret Skies",
+		"Network": "CBS",
+		"Years": "54",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00032",
+		"ShowType_ID": "TYPE_09",
+		"show_type": "news_political",
+		"Show_Name": "Empty Court",
+		"Network": "FOX",
+		"Years": "12",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00033",
+		"ShowType_ID": "TYPE_09",
+		"show_type": "news_political",
+		"Show_Name": "Winter Station",
+		"Network": "NBC",
+		"Years": "61",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00034",
+		"ShowType_ID": "TYPE_09",
+		"show_type": "news_political",
+		"Show_Name": "Midnight Valley",
+		"Network": "ABC",
+		"Years": "27",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00035",
+		"ShowType_ID": "TYPE_10",
+		"show_type": "reality_show",
+		"Show_Name": "Black City",
+		"Network": "FOX",
+		"Years": "1",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00036",
+		"ShowType_ID": "TYPE_11",
+		"show_type": "reality_competition",
+		"Show_Name": "Eastern Line",
+		"Network": "NBC",
+		"Years": "2",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00037",
+		"ShowType_ID": "TYPE_11",
+		"show_type": "reality_competition",
+		"Show_Name": "Western Dawn",
+		"Network": "FOX",
+		"Years": "7",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00038",
+		"ShowType_ID": "TYPE_11",
+		"show_type": "reality_competition",
+		"Show_Name": "Stone Lane",
+		"Network": "CBS",
+		"Years": "9",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00039",
+		"ShowType_ID": "TYPE_11",
+		"show_type": "reality_competition",
+		"Show_Name": "Open Skies",
+		"Network": "ABC",
+		"Years": "6",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00040",
+		"ShowType_ID": "TYPE_11",
+		"show_type": "reality_competition",
+		"Show_Name": "Twin Skies",
+		"Network": "CBS",
+		"Years": "16",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00041",
+		"ShowType_ID": "TYPE_11",
+		"show_type": "reality_competition",
+		"Show_Name": "Central Place",
+		"Network": "ABC",
+		"Years": "1",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00042",
+		"ShowType_ID": "TYPE_12",
+		"show_type": "sports_live",
+		"Show_Name": "Early Ward",
+		"Network": "NBC",
+		"Years": "2",
+		"Duration_mins": "180",
+		"Blocks_30m": "6"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00043",
+		"ShowType_ID": "TYPE_13",
+		"show_type": "talk_panel",
+		"Show_Name": "Summer Street",
+		"Network": "ABC",
+		"Years": "10",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00044",
+		"ShowType_ID": "TYPE_16",
+		"show_type": "sitcom_singlecam",
+		"Show_Name": "Final Station",
+		"Network": "NBC",
+		"Years": "2",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00045",
+		"ShowType_ID": "TYPE_16",
+		"show_type": "sitcom_singlecam",
+		"Show_Name": "Found River",
+		"Network": "ABC",
+		"Years": "1",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00046",
+		"ShowType_ID": "TYPE_16",
+		"show_type": "sitcom_singlecam",
+		"Show_Name": "Twin Hall",
+		"Network": "NBC",
+		"Years": "4",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00047",
+		"ShowType_ID": "TYPE_16",
+		"show_type": "sitcom_singlecam",
+		"Show_Name": "Spring Room",
+		"Network": "ABC",
+		"Years": "2",
+		"Duration_mins": "30",
+		"Blocks_30m": "1"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00048",
+		"ShowType_ID": "TYPE_17",
+		"show_type": "drama_procedural",
+		"Show_Name": "Twin Lane",
+		"Network": "FOX",
+		"Years": "3",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00049",
+		"ShowType_ID": "TYPE_17",
+		"show_type": "drama_procedural",
+		"Show_Name": "Grand Ward",
+		"Network": "CBS",
+		"Years": "3",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00050",
+		"ShowType_ID": "TYPE_17",
+		"show_type": "drama_procedural",
+		"Show_Name": "Open House",
+		"Network": "CBS",
+		"Years": "8",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00051",
+		"ShowType_ID": "TYPE_17",
+		"show_type": "drama_procedural",
+		"Show_Name": "Perfect Line",
+		"Network": "FOX",
+		"Years": "4",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00052",
+		"ShowType_ID": "TYPE_17",
+		"show_type": "drama_procedural",
+		"Show_Name": "Late Law",
+		"Network": "NBC",
+		"Years": "9",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00053",
+		"ShowType_ID": "TYPE_17",
+		"show_type": "drama_procedural",
+		"Show_Name": "Northern Line",
+		"Network": "CBS",
+		"Years": "5",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00054",
+		"ShowType_ID": "TYPE_17",
+		"show_type": "drama_procedural",
+		"Show_Name": "Midnight Law",
+		"Network": "CBS",
+		"Years": "0",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00055",
+		"ShowType_ID": "TYPE_18",
+		"show_type": "drama_scifi_fantasy",
+		"Show_Name": "Little Ward",
+		"Network": "NBC",
+		"Years": "1",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00056",
+		"ShowType_ID": "TYPE_18",
+		"show_type": "drama_scifi_fantasy",
+		"Show_Name": "Southern Place",
+		"Network": "FOX",
+		"Years": "0",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00057",
+		"ShowType_ID": "TYPE_18",
+		"show_type": "drama_scifi_fantasy",
+		"Show_Name": "Empty Room",
+		"Network": "CBS",
+		"Years": "3",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00058",
+		"ShowType_ID": "TYPE_18",
+		"show_type": "drama_scifi_fantasy",
+		"Show_Name": "Pacific Place",
+		"Network": "NBC",
+		"Years": "2",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00059",
+		"ShowType_ID": "TYPE_18",
+		"show_type": "drama_scifi_fantasy",
+		"Show_Name": "Final Square",
+		"Network": "ABC",
+		"Years": "4",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	},
+	{
+		"Show_ID": "SHOW_FIC_00060",
+		"ShowType_ID": "TYPE_18",
+		"show_type": "drama_scifi_fantasy",
+		"Show_Name": "Little Mountain",
+		"Network": "FOX",
+		"Years": "1",
+		"Duration_mins": "60",
+		"Blocks_30m": "2"
+	}
+]

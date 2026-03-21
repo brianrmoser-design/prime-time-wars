@@ -1,0 +1,18 @@
+[
+	{
+		"Network_ID": "NET_01",
+		"Network_Name": "ABC"
+	},
+	{
+		"Network_ID": "NET_02",
+		"Network_Name": "CBS"
+	},
+	{
+		"Network_ID": "NET_03",
+		"Network_Name": "NBC"
+	},
+	{
+		"Network_ID": "NET_04",
+		"Network_Name": "FOX"
+	}
+]

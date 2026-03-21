@@ -56,7 +56,7 @@ const DEFAULT_BALANCE := {
 ## Replacement rate: fraction of pool that "exits" per year (death/retirement). Used for gradual gen.
 const DEFAULT_ANNUAL_EXIT_RATE := 0.02
 
-## Save an array of person dicts to a JSON file. path e.g. "res://Data/people_generated.json"
+## Save an array of person dicts to a JSON file (e.g. active universe's people_generated.json).
 static func save_people_to_json(people: Array, path: String) -> bool:
 	var json_str := JSON.stringify(people)
 	var f = FileAccess.open(path, FileAccess.WRITE)
@@ -68,8 +68,17 @@ static func save_people_to_json(people: Array, path: String) -> bool:
 
 var _rng := RandomNumberGenerator.new()
 var _traits_data: Array = []
+## Legacy short lists when no CSV is loaded (see set_name_lists / load_name_database_from_csv).
 var _name_first: PackedStringArray = []
 var _name_last: PackedStringArray = []
+var _name_db_loaded: bool = false
+## Each entry: name, gender, origin, era_peak (int), weight (float)
+var _first_name_rows: Array = []
+## Each entry: name, origin, weight (float); also indexed by origin in _last_by_origin
+var _last_name_rows: Array = []
+var _last_by_origin: Dictionary = {}
+## Sum of weights per origin (from first-name rows) for origin picking.
+var _origin_weight: Dictionary = {}
 
 
 func _init(seed_value: int = -1) -> void:
@@ -81,7 +90,6 @@ func _init(seed_value: int = -1) -> void:
 
 
 func _init_names() -> void:
-	# Minimal name lists; replace or extend via set_name_lists() or load from JSON.
 	_name_first = PackedStringArray([
 		"Alex", "Jordan", "Sam", "Morgan", "Casey", "Riley", "Quinn", "Avery", "Blake", "Drew",
 		"Jamie", "Cameron", "Skyler", "Reese", "Sage", "Finley", "Parker", "Emery", "Hayden", "Kendall",
@@ -92,6 +100,7 @@ func _init_names() -> void:
 		"Shaw", "Wells", "Brooks", "Cole", "Dunn", "Ellis", "Fox", "Grant", "Hunt", "Knight",
 		"Lane", "Mills", "Page", "Quinn", "Ross", "Stone", "Vance", "Webb", "York", "Zimmerman"
 	])
+	_name_db_loaded = false
 
 
 ## Load trait definitions from Data/traits.json (optional; used for validation or future use).
@@ -119,6 +128,33 @@ func set_name_lists(first: PackedStringArray, last: PackedStringArray) -> void:
 		_name_first = first
 	if last.size() > 0:
 		_name_last = last
+	_name_db_loaded = false
+
+
+## Load era- and origin-aware names from CSV (same columns as database_first_names / database_last_names).
+## First: Name,Gender,Origin,Era_Peak,Weight — Last: Name,Origin,Weight
+func load_name_database_from_csv(first_path: String, last_path: String) -> bool:
+	var t1 := _read_utf8_file(first_path)
+	var t2 := _read_utf8_file(last_path)
+	if t1.is_empty() or t2.is_empty():
+		return false
+	_first_name_rows = _parse_first_names_csv(t1)
+	_last_name_rows = _parse_last_names_csv(t2)
+	if _first_name_rows.is_empty() or _last_name_rows.is_empty():
+		return false
+	_rebuild_last_by_origin()
+	_rebuild_origin_weights()
+	_name_db_loaded = true
+	return true
+
+
+## Default project paths under res://Data/name_lists/
+func load_default_name_database() -> bool:
+	var a := "res://Data/name_lists/database_first_names.csv"
+	var b := "res://Data/name_lists/database_last_names.csv"
+	if not FileAccess.file_exists(a) or not FileAccess.file_exists(b):
+		return false
+	return load_name_database_from_csv(a, b)
 
 
 ## Generate one person with the given archetype and optional skill tier (random if empty).
@@ -132,10 +168,13 @@ func generate_person(archetype: String, skill_tier: String = "") -> Dictionary:
 	var traits := _build_traits(arch, tier)
 	var fame := _roll_fame_for_archetype(archetype, skill_tier)
 	var attractiveness := _roll_attractiveness_for_archetype(archetype, skill_tier)
+	var dob_str := _random_dob()
+	var birth_year := int(dob_str.substr(0, 4))
+	var gender := "Male" if _rng.randi() % 2 == 0 else "Female"
 	var person := {
 		"Person_ID": _next_id(),
-		"Person_Name": _random_name(),
-		"DOB": _random_dob(),
+		"Person_Name": _random_full_name(gender, birth_year),
+		"DOB": dob_str,
 		"Fame": str(clampi(fame, 35, 100)),
 		"Attractiveness": str(clampi(attractiveness, 35, 100))
 	}
@@ -255,12 +294,157 @@ func _next_id() -> String:
 	return "PERS_%06d" % (_rng.randi_range(900000, 999999))
 
 
-func _random_name() -> String:
-	for _attempt in 20:
-		var n := _name_first[_rng.randi() % _name_first.size()] + " " + _name_last[_rng.randi() % _name_last.size()]
+func _random_full_name(gender: String, birth_year: int) -> String:
+	for _attempt in 40:
+		var n := ""
+		if _name_db_loaded:
+			n = _talent_name_from_database(gender, birth_year)
+		else:
+			n = _name_first[_rng.randi() % _name_first.size()] + " " + _name_last[_rng.randi() % _name_last.size()]
 		if not _avoid_names.get(n, false):
 			return n
 	return "Generated_%d" % _rng.randi_range(10000, 99999)
+
+
+## Era-adjusted weighted pick (matches typical peak-year name popularity falloff).
+func _talent_name_from_database(gender: String, birth_year: int) -> String:
+	var origin := _pick_origin_by_weight()
+	var first_pool: Array = []
+	for row in _first_name_rows:
+		if str(row.get("gender", "")) != gender:
+			continue
+		if str(row.get("origin", "")) != origin:
+			continue
+		var peak: int = int(row.get("era_peak", 1975))
+		var w0: float = float(row.get("weight", 1.0))
+		var w: float = w0 / (1.0 + abs(birth_year - peak) * 0.1)
+		first_pool.append({"name": row.get("name", ""), "w": w})
+	if first_pool.is_empty():
+		for row in _first_name_rows:
+			if str(row.get("origin", "")) != origin:
+				continue
+			var peak2: int = int(row.get("era_peak", 1975))
+			var w0b: float = float(row.get("weight", 1.0))
+			var wb: float = w0b / (1.0 + abs(birth_year - peak2) * 0.1)
+			first_pool.append({"name": row.get("name", ""), "w": wb})
+	if first_pool.is_empty():
+		return _legacy_random_name_fragment() + " " + _legacy_random_name_fragment()
+
+	var first: String = _weighted_pick_name(first_pool)
+	var last_pool: Array = _last_entries_for_origin(origin)
+	if last_pool.is_empty():
+		last_pool = _last_name_rows
+	var last: String = _weighted_pick_name(last_pool)
+	return first + " " + last
+
+
+func _legacy_random_name_fragment() -> String:
+	if _name_first.size() > 0 and _rng.randf() < 0.5:
+		return _name_first[_rng.randi() % _name_first.size()]
+	if _name_last.size() > 0:
+		return _name_last[_rng.randi() % _name_last.size()]
+	return "X"
+
+
+func _pick_origin_by_weight() -> String:
+	var total := 0.0
+	for o in _origin_weight:
+		total += float(_origin_weight[o])
+	if total <= 0.0:
+		return "Western"
+	var r := _rng.randf() * total
+	for o in _origin_weight:
+		r -= float(_origin_weight[o])
+		if r <= 0.0:
+			return str(o)
+	return "Western"
+
+
+func _last_entries_for_origin(origin: String) -> Array:
+	return _last_by_origin.get(origin, [])
+
+
+func _weighted_pick_name(entries: Array) -> String:
+	var total := 0.0
+	for e in entries:
+		total += float(e.get("w", 0.0))
+	if total <= 0.0 and entries.size() > 0:
+		return str(entries[_rng.randi() % entries.size()].get("name", "?"))
+	var r := _rng.randf() * total
+	for e in entries:
+		r -= float(e.get("w", 0.0))
+		if r <= 0.0:
+			return str(e.get("name", "?"))
+	return str(entries[entries.size() - 1].get("name", "?"))
+
+
+func _read_utf8_file(path: String) -> String:
+	var f = FileAccess.open(path, FileAccess.READ)
+	if f == null:
+		return ""
+	var t := f.get_as_text()
+	f.close()
+	return t
+
+
+func _parse_first_names_csv(text: String) -> Array:
+	var rows: Array = []
+	var lines := text.split("\n")
+	var start := 1
+	if lines.size() > 0 and not lines[0].to_lower().begins_with("name,"):
+		start = 0
+	for i in range(start, lines.size()):
+		var line := lines[i].strip_edges()
+		if line.is_empty():
+			continue
+		var parts := line.split(",")
+		if parts.size() < 5:
+			continue
+		rows.append({
+			"name": parts[0].strip_edges(),
+			"gender": parts[1].strip_edges(),
+			"origin": parts[2].strip_edges(),
+			"era_peak": parts[3].strip_edges().to_int(),
+			"weight": parts[4].strip_edges().to_float()
+		})
+	return rows
+
+
+func _parse_last_names_csv(text: String) -> Array:
+	var rows: Array = []
+	var lines := text.split("\n")
+	var start := 1
+	if lines.size() > 0 and not lines[0].to_lower().begins_with("name,"):
+		start = 0
+	for i in range(start, lines.size()):
+		var line := lines[i].strip_edges()
+		if line.is_empty():
+			continue
+		var parts := line.split(",")
+		if parts.size() < 3:
+			continue
+		rows.append({
+			"name": parts[0].strip_edges(),
+			"origin": parts[1].strip_edges(),
+			"weight": parts[2].strip_edges().to_float()
+		})
+	return rows
+
+
+func _rebuild_last_by_origin() -> void:
+	_last_by_origin.clear()
+	for row in _last_name_rows:
+		var o: String = str(row.get("origin", ""))
+		if not _last_by_origin.has(o):
+			_last_by_origin[o] = []
+		_last_by_origin[o].append({"name": row.get("name", ""), "w": float(row.get("weight", 1.0))})
+
+
+func _rebuild_origin_weights() -> void:
+	_origin_weight.clear()
+	for row in _first_name_rows:
+		var o: String = str(row.get("origin", ""))
+		_origin_weight[o] = float(_origin_weight.get(o, 0.0)) + float(row.get("weight", 0.0))
 
 
 func _set_id_name_avoid(ids: Dictionary, names: Dictionary) -> void:

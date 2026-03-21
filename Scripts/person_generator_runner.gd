@@ -6,7 +6,8 @@ extends Node
 enum Mode { FULL_UNIVERSE, REPLACEMENT_BATCH, CUSTOM_BATCH }
 
 @export var mode: Mode = Mode.FULL_UNIVERSE
-@export var save_path: String = "res://Data/people_generated.json"
+## If empty, writes to the active universe folder (see UniverseConfig).
+@export var save_path: String = ""
 @export var replacement_pool_size: int = 500
 @export var custom_batch_size: int = 20
 @export var do_save: bool = true
@@ -18,6 +19,7 @@ func _ready() -> void:
 	var existing: Array = data.get("people", [])
 
 	var gen = PersonGenerator.new()
+	gen.load_default_name_database()
 	gen.load_traits_from_project()
 
 	var people: Array = []
@@ -33,9 +35,12 @@ func _ready() -> void:
 			print("Generated custom batch: ", people.size(), " people")
 
 	if do_save and people.size() > 0:
-		if PersonGenerator.save_people_to_json(people, save_path):
-			print("Saved to ", save_path)
+		var out_path: String = save_path
+		if out_path.is_empty():
+			out_path = UniverseConfig.get_people_generated_path()
+		if PersonGenerator.save_people_to_json(people, out_path):
+			print("Saved to ", out_path)
 		else:
-			print("Failed to save to ", save_path)
+			print("Failed to save to ", out_path)
 	else:
 		print("Not saving (do_save=false or 0 people)")

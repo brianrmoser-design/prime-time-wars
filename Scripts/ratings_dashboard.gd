@@ -9,10 +9,15 @@
 
 extends Control
 
+## Applied when this scene loads, unless a command-line universe=… was passed (see UniverseConfig).
+@export_enum("2008", "fictional") var initial_universe: int = 0
+
 # Report data (cached)
 var _show_ratings: Array = []
 var _people_with_scores: Array = []
 var _schedule_data: Dictionary = {}
+
+const _UNIVERSE_IDS: PackedStringArray = ["2008", "fictional"]
 
 # Sort: column index and direction
 var _shows_sort_col: int = 0
@@ -31,9 +36,13 @@ var _schedule_sort_asc: bool = true
 @onready var _schedule_day_filter: OptionButton = $MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow/ScheduleDayFilter
 @onready var _schedule_network_filter: OptionButton = $MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow/ScheduleNetworkFilter
 @onready var _schedule_tree: Tree = $MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleTree
+@onready var _universe_option: OptionButton = $MarginContainer/VBoxContainer/UniverseRow/UniverseOption
 
 
 func _ready() -> void:
+	if not UniverseConfig.set_from_command_line:
+		UniverseConfig.set_universe(_UNIVERSE_IDS[clampi(initial_universe, 0, _UNIVERSE_IDS.size() - 1)])
+	_setup_universe_selector()
 	_load_data()
 	_populate_day_filter()
 	_populate_shows_network_filter()
@@ -47,6 +56,33 @@ func _ready() -> void:
 	_people_filter.text_changed.connect(func(_t): _build_people_tree())
 	_schedule_day_filter.item_selected.connect(func(_i): _build_schedule_tree())
 	_schedule_network_filter.item_selected.connect(func(_i): _build_schedule_tree())
+	_build_shows_tree()
+	_build_people_tree()
+	_build_schedule_tree()
+
+
+func _setup_universe_selector() -> void:
+	_universe_option.clear()
+	_universe_option.add_item("2008 (historical)", 0)
+	_universe_option.add_item("Fictional", 1)
+	var cur := UniverseConfig.universe_id
+	var idx := 0
+	for i in _UNIVERSE_IDS.size():
+		if _UNIVERSE_IDS[i] == cur:
+			idx = i
+			break
+	_universe_option.select(idx)
+	if not _universe_option.item_selected.is_connected(_on_universe_selected):
+		_universe_option.item_selected.connect(_on_universe_selected)
+
+
+func _on_universe_selected(option_index: int) -> void:
+	var i := clampi(option_index, 0, _UNIVERSE_IDS.size() - 1)
+	UniverseConfig.set_universe(_UNIVERSE_IDS[i])
+	_load_data()
+	_populate_day_filter()
+	_populate_shows_network_filter()
+	_populate_schedule_network_filter()
 	_build_shows_tree()
 	_build_people_tree()
 	_build_schedule_tree()

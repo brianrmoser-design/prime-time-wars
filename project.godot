@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="PrimeTimeWars"
+run/main_scene="uid://1olwtcd8tkk8"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+UniverseConfig="*res://Scripts/universe_config.gd"
 
 [physics]
 

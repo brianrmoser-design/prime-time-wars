@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c5mbk023245wu"
+
+[deps]
+
+files=["res://Data/name_lists/database_last_names.Origin.translation", "res://Data/name_lists/database_last_names.Weight.translation"]
+
+source_file="res://Data/name_lists/database_last_names.csv"
+dest_files=["res://Data/name_lists/database_last_names.Origin.translation", "res://Data/name_lists/database_last_names.Weight.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
