@@ -3,13 +3,9 @@ class_name RatingsReport
 ###############################################################
 # ratings_report.gd
 #
-# PURPOSE
 # Retrieves and aggregates data for the ratings dashboard:
 # - All shows with full rating breakdowns (cast, writers, showrunners, math)
-# - All people with 14 traits plus actor score per show assignment
-#
-# Use this script for any UI or export that needs sortable/filterable
-# charts of shows and people. Keep engine_verifier.gd for verification only.
+# - All people with talent traits plus on-air score per assignment
 ###############################################################
 
 ###############################################################
@@ -54,11 +50,8 @@ static func get_all_show_ratings() -> Array:
 # get_all_people_with_scores
 #
 # Returns an array of dictionaries, one per person:
-#   person_name, person_id, Fame, Attractiveness, P, C, W, I, ED, DC, SH, CT, TI, BF, LC, CC,
-#   assignments: [ { show_name, show_type, role, actor_score } ]  (only actor-type roles)
-#
-# Use this for a people chart. Actor score is computed from the person's
-# traits weighted by the show type for each assignment.
+#   person_name, person_id, columns from TalentTraitSchema.DASHBOARD_COLUMNS (title → value),
+#   assignments: [ { show_name, show_type, role, actor_score } ]  (on-air roles only)
 ###############################################################
 
 static func get_all_people_with_scores() -> Array:
@@ -68,7 +61,6 @@ static func get_all_people_with_scores() -> Array:
 	var shows = data["shows"]
 	var showtypes = data["showtypes"]
 
-	# Build show type lookup by show name
 	var show_type_by_name = {}
 	for show_entry in shows:
 		var show_name = show_entry["Show_Name"]
@@ -77,57 +69,39 @@ static func get_all_people_with_scores() -> Array:
 				show_type_by_name[show_name] = t.get("show_type", "")
 				break
 
-	var person_by_name = {}
+	var out: Array = []
 	for p in people:
-		person_by_name[p["Person_Name"]] = p
-
-	# One row per person with traits + list of actor assignments and scores
-	var out = []
-	for p in people:
-		var name = p["Person_Name"]
-		var row = {
+		var name: String = p["Person_Name"]
+		var row: Dictionary = {
 			"person_name": name,
 			"person_id": p.get("Person_ID", ""),
-			"Fame": _num(p.get("Fame", 0)),
-			"Attractiveness": _num(p.get("Attractiveness", 0)),
-			"P": _num(p.get("traits.P", 0)),
-			"C": _num(p.get("traits.C", 0)),
-			"W": _num(p.get("traits.W", 0)),
-			"I": _num(p.get("traits.I", 0)),
-			"ED": _num(p.get("traits.ED", 0)),
-			"DC": _num(p.get("traits.DC", 0)),
-			"SH": _num(p.get("traits.SH", 0)),
-			"CT": _num(p.get("traits.CT", 0)),
-			"TI": _num(p.get("traits.TI", 0)),
-			"BF": _num(p.get("traits.BF", 0)),
-			"LC": _num(p.get("traits.LC", 0)),
-			"CC": _num(p.get("traits.CC", 0)),
 			"assignments": []
 		}
+		for col in TalentTraitSchema.DASHBOARD_COLUMNS:
+			var title: String = col["title"]
+			if col["kind"] == "top":
+				row[title] = TalentTraitSchema.read_top_field(p, col["key"])
+			else:
+				row[title] = TalentTraitSchema.read_trait(p, col["key"])
 
-		# Find all contracts for this person that count as "actor" for scoring
 		for c in contracts:
 			if c["Person_Name"] != name:
 				continue
-			var show_name = c["Show_Name"]
+			var sn = c["Show_Name"]
 			var role = c["Role"]
-			var show_type = show_type_by_name.get(show_name, "")
-
+			var show_type: String = show_type_by_name.get(sn, "")
 			var is_actor_role = (role == "Lead Actor" or role == "Support Actor" or role in ["Host", "Anchor", "Co-Host", "Reporter"])
-
 			if not is_actor_role:
 				continue
-
 			var traits = ShowBuilder.extract_actor_traits(p)
-			var actor_score = RatingEngine.compute_actor_score(traits, show_type)
+			var actor_score: float = RatingEngine.compute_on_air_score(traits, show_type)
 			var role_key = "lead"
 			if role in ["Support Actor", "Co-Host", "Reporter"]:
 				role_key = "support"
 			elif role in ["Lead Actor", "Host", "Anchor"]:
 				role_key = "lead"
-
 			row["assignments"].append({
-				"show_name": show_name,
+				"show_name": sn,
 				"show_type": show_type,
 				"role": role_key,
 				"role_label": role,
@@ -216,7 +190,7 @@ static func _time_to_band(time_str: String) -> String:
 		return TIME_BAND_EVENING
 	if mins >= 20 * 60 and mins < 23 * 60:
 		return TIME_BAND_PRIME
-	return TIME_BAND_LATE  # 23:00-05:59
+	return TIME_BAND_LATE
 
 
 static func _effectiveness_for_band(showtype_entry: Dictionary, band: String) -> float:
@@ -233,14 +207,6 @@ static func _effectiveness_for_band(showtype_entry: Dictionary, band: String) ->
 
 ###############################################################
 # get_resolved_schedule_with_ratings
-#
-# Returns a structure for the schedule dashboard:
-# - networks: array of network IDs in order
-# - days: array of day keys "0"-"6" (Sunday-Saturday)
-# - slots: array of { network_id, day, time, show_id, show_name, blocks,
-#   show_type, base_show_quality, cast_score, writing_score, showrunner_score,
-#   time_band, effectiveness, effective_quality }
-# Flattened so the UI can filter/sort by network, day, time, etc.
 ###############################################################
 
 static func get_resolved_schedule_with_ratings() -> Dictionary:

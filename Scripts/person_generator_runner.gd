@@ -20,7 +20,6 @@ func _ready() -> void:
 
 	var gen = PersonGenerator.new()
 	gen.load_default_name_database()
-	gen.load_traits_from_project()
 
 	var people: Array = []
 	match mode:

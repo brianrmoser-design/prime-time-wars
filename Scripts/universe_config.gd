@@ -1,7 +1,7 @@
 extends Node
 
 ## Active universe: all game JSON (people, shows, schedule, …) lives under
-## res://universes/<universe_id>/. Shared trait definitions stay in res://Data/traits.json.
+## res://universes/<universe_id>/.
 ##
 ## How to switch:
 ##   • Code: UniverseConfig.set_universe("fictional") before any DataLoader.load_data().

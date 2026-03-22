@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2k8ratingsdashboard"]
+[gd_scene format=3 uid="uid://1olwtcd8tkk8"]
 
-[ext_resource type="Script" path="res://Scripts/ratings_dashboard.gd" id="1_dashboard"]
+[ext_resource type="Script" uid="uid://b1qv6fqb7utga" path="res://Scripts/ratings_dashboard.gd" id="1_dashboard"]
 
-[node name="RatingsDashboard" type="Control"]
+[node name="RatingsDashboard" type="Control" unique_id=1983568343]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,147 +11,173 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dashboard")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=57616719]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1803889691]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="UniverseRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="UniverseRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=977767336]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="UniverseLabel" type="Label" parent="MarginContainer/VBoxContainer/UniverseRow"]
+[node name="UniverseLabel" type="Label" parent="MarginContainer/VBoxContainer/UniverseRow" unique_id=449816419]
 layout_mode = 2
 text = "Universe:"
 
-[node name="UniverseOption" type="OptionButton" parent="MarginContainer/VBoxContainer/UniverseRow"]
+[node name="UniverseOption" type="OptionButton" parent="MarginContainer/VBoxContainer/UniverseRow" unique_id=689959785]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer" unique_id=748622545]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+current_tab = 0
 
-[node name="Shows" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Shows" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1405630710]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 6
+metadata/_tab_index = 0
 
-[node name="ShowsFilter" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/Shows"]
+[node name="ShowsFilter" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/Shows" unique_id=1558491309]
 layout_mode = 2
 placeholder_text = "Filter by name, type, or network..."
 
-[node name="ShowsFilterRow2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows"]
+[node name="ShowsFilterRow2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows" unique_id=1927457522]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="NetworkLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Shows/ShowsFilterRow2"]
+[node name="NetworkLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Shows/ShowsFilterRow2" unique_id=379528281]
 layout_mode = 2
 text = "Network:"
 
-[node name="ShowsNetworkFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Shows/ShowsFilterRow2"]
+[node name="ShowsNetworkFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Shows/ShowsFilterRow2" unique_id=522400324]
 layout_mode = 2
-item_count = 1
 selected = 0
-item_0/text = "All"
+item_count = 1
+popup/item_0/id = 0
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows" unique_id=402425521]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+split_offsets = PackedInt32Array(400)
 split_offset = 400
 
-[node name="ShowsTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer"]
+[node name="ShowsTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer" unique_id=997157651]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 7
 column_titles_visible = true
-hide_root = true
 allow_rmb_select = true
+hide_root = true
 
-[node name="ShowDetail" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer"]
+[node name="ShowDetail" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer" unique_id=700016508]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DetailScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail"]
+[node name="DetailScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail" unique_id=1866455721]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="DetailVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail/DetailScroll"]
+[node name="DetailVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail/DetailScroll" unique_id=572811116]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="DetailLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail/DetailScroll/DetailVBox"]
+[node name="DetailLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail/DetailScroll/DetailVBox" unique_id=1666232655]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 bbcode_enabled = true
 fit_content = true
-scroll_active = false
+selection_enabled = true
 
-[node name="People" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="People" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=545924576]
+visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 6
+metadata/_tab_index = 1
 
-[node name="PeopleFilter" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/People"]
+[node name="PeopleFilter" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/People" unique_id=604637044]
 layout_mode = 2
 placeholder_text = "Filter people by name or show..."
 
-[node name="PeopleTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/People"]
+[node name="PeopleTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/People" unique_id=1531807610]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 18
+columns = 19
 column_titles_visible = true
-hide_root = true
 allow_rmb_select = true
+hide_root = true
 
-[node name="Schedule" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+[node name="Schedule" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=651031737]
+visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 6
+metadata/_tab_index = 2
 
-[node name="ScheduleFilterRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Schedule"]
+[node name="ScheduleFilterRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Schedule" unique_id=1310366404]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+[node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow" unique_id=1299636271]
 layout_mode = 2
 text = "Day:"
 
-[node name="ScheduleDayFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+[node name="ScheduleDayFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow" unique_id=1457001074]
 layout_mode = 2
-item_count = 8
 selected = 0
-item_0/text = "All"
-item_1/text = "Sun"
-item_2/text = "Mon"
-item_3/text = "Tue"
-item_4/text = "Wed"
-item_5/text = "Thu"
-item_6/text = "Fri"
-item_7/text = "Sat"
+item_count = 8
+popup/item_0/id = 0
+popup/item_1/id = 1
+popup/item_2/id = 2
+popup/item_3/id = 3
+popup/item_4/id = 4
+popup/item_5/id = 5
+popup/item_6/id = 6
+popup/item_7/id = 7
 
-[node name="NetworkLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+[node name="NetworkLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow" unique_id=1100626706]
 layout_mode = 2
 text = "Network:"
 
-[node name="ScheduleNetworkFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow"]
+[node name="ScheduleNetworkFilter" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow" unique_id=998942719]
 layout_mode = 2
-item_count = 1
 selected = 0
-item_0/text = "All"
+item_count = 1
+popup/item_0/id = 0
 
-[node name="ScheduleTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Schedule"]
+[node name="ScheduleTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Schedule" unique_id=1431432299]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 10
 column_titles_visible = true
-hide_root = true
 allow_rmb_select = true
+hide_root = true

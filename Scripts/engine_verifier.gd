@@ -3,8 +3,7 @@
 #
 # PURPOSE
 #
-# This script verifies that the Godot scoring engine produces
-# the same results as the original JavaScript engine.
+# This script prints scoring output for every show (for sanity checks / comparison).
 #
 # It does this by:
 #
@@ -85,7 +84,7 @@ func run_verification():
 			continue
 
 		#######################################################
-		# Run scoring engine (same as JS rateShow)
+		# Run scoring engine
 		#######################################################
 
 		var result = RatingEngine.rate_show(show_obj)

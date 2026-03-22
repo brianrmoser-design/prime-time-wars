@@ -3,14 +3,14 @@ class_name PersonGenerator
 ###############################################################
 # person_generator.gd
 #
-# Generates fictional people for the talent pool. Uses Data/traits.json
-# for trait definitions. Supports:
+# Generates fictional people for the talent pool (traits.ACT, traits.WRI, …).
+# Supports:
 # - Full universe: generate a balanced pool of appropriate size.
 # - Gradual: generate a batch to replace death/retirement.
 ###############################################################
 
-## All trait keys used in people.json (Fame, Attractiveness, then traits.*)
-const TRAIT_IDS := ["P", "C", "W", "I", "ED", "DC", "SH", "CT", "TI", "BF", "LC", "CC"]
+## All trait keys written to people.json (after Fame, Attractiveness).
+const TRAIT_IDS := ["ACT", "WRI", "BCN", "LOG", "COM", "DRM", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]
 const NO_SKILL := 15
 const MIN_TRAIT := 35
 const MAX_TRAIT := 100
@@ -27,16 +27,16 @@ const SKILL_TIERS := {
 ## Archetypes: which traits are primary (high), secondary (mid), or none (15/low).
 ## Primary = use tier range; secondary = mid band (55-75); none = NO_SKILL or low random.
 const ARCHETYPES := {
-	"lead_actor":      {"primary": ["P", "C", "I", "ED", "DC", "SH", "CT"], "secondary": ["W"], "none": ["TI", "BF", "LC", "CC"]},
-	"support_actor":   {"primary": ["P", "C", "ED", "DC", "SH", "CT"], "secondary": ["W", "I"], "none": ["TI", "BF", "LC", "CC"]},
-	"host":            {"primary": ["P", "C", "W", "SH", "CT", "BF"], "secondary": ["I", "ED"], "none": ["DC", "TI", "LC", "CC"]},
-	"anchor":          {"primary": ["P", "C", "W", "TI", "BF"], "secondary": ["ED", "DC"], "none": ["I", "SH", "CT", "LC", "CC"]},
-	"reporter":        {"primary": ["C", "W", "TI", "BF"], "secondary": ["P", "ED"], "none": ["I", "DC", "SH", "CT", "LC", "CC"]},
-	"judge":           {"primary": ["P", "C", "W", "SH"], "secondary": ["I", "CT", "BF"], "none": ["ED", "DC", "TI", "LC", "CC"]},
-	"staff_writer":    {"primary": ["W", "ED", "DC", "SH"], "secondary": [], "none": ["P", "C", "I", "CT", "TI", "BF", "LC", "CC"]},
-	"head_writer":     {"primary": ["W", "ED", "DC", "SH"], "secondary": ["C", "LC"], "none": ["P", "I", "CT", "TI", "BF", "CC"]},
-	"showrunner":      {"primary": ["C", "W", "CC", "LC", "ED", "DC", "SH"], "secondary": [], "none": ["P", "I", "CT", "TI", "BF"]},
-	"exec_producer":   {"primary": ["C", "LC", "CC"], "secondary": ["W", "ED", "DC", "SH"], "none": ["P", "I", "CT", "TI", "BF"]}
+	"lead_actor": {"primary": ["ACT", "COM", "DRM"], "secondary": ["DIST", "EDY", "VUL"], "none": ["WRI", "BCN", "LOG", "WVW", "STM", "EGO", "PRO"]},
+	"support_actor": {"primary": ["ACT", "COM", "DRM"], "secondary": ["DIST", "VUL"], "none": ["WRI", "BCN", "LOG", "WVW", "EDY", "STM", "EGO", "PRO"]},
+	"host": {"primary": ["ACT", "COM", "BCN", "WRI"], "secondary": ["DRM", "EDY"], "none": ["LOG", "DIST", "WVW", "VUL", "STM", "EGO", "PRO"]},
+	"anchor": {"primary": ["BCN", "ACT", "COM"], "secondary": ["DRM", "DIST"], "none": ["WRI", "LOG", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+	"reporter": {"primary": ["BCN", "ACT"], "secondary": ["COM", "DRM", "WRI"], "none": ["LOG", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+	"judge": {"primary": ["ACT", "COM", "WRI"], "secondary": ["BCN", "DRM"], "none": ["LOG", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+	"staff_writer": {"primary": ["WRI", "COM", "DRM"], "secondary": [], "none": ["ACT", "BCN", "LOG", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+	"head_writer": {"primary": ["WRI", "COM", "DRM"], "secondary": ["LOG"], "none": ["ACT", "BCN", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+	"showrunner": {"primary": ["LOG", "COM", "DRM"], "secondary": ["WRI", "DIST", "WVW"], "none": ["ACT", "BCN", "EDY", "VUL", "STM", "EGO", "PRO"]},
+	"exec_producer": {"primary": ["LOG"], "secondary": ["COM", "DRM", "WRI"], "none": ["ACT", "BCN", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]}
 }
 
 ## Default pool balance: fraction of generated people per archetype (must sum to 1.0).
@@ -67,8 +67,7 @@ static func save_people_to_json(people: Array, path: String) -> bool:
 	return true
 
 var _rng := RandomNumberGenerator.new()
-var _traits_data: Array = []
-## Legacy short lists when no CSV is loaded (see set_name_lists / load_name_database_from_csv).
+## Short lists when no CSV is loaded (see set_name_lists / load_name_database_from_csv).
 var _name_first: PackedStringArray = []
 var _name_last: PackedStringArray = []
 var _name_db_loaded: bool = false
@@ -101,25 +100,6 @@ func _init_names() -> void:
 		"Lane", "Mills", "Page", "Quinn", "Ross", "Stone", "Vance", "Webb", "York", "Zimmerman"
 	])
 	_name_db_loaded = false
-
-
-## Load trait definitions from Data/traits.json (optional; used for validation or future use).
-func load_traits_from_project() -> bool:
-	var path := "res://Data/traits.json"
-	if not FileAccess.file_exists(path):
-		path = "res://data/traits.json"
-	if not FileAccess.file_exists(path):
-		return false
-	var f = FileAccess.open(path, FileAccess.READ)
-	if not f:
-		return false
-	var json = JSON.new()
-	var err = json.parse(f.get_as_text())
-	f.close()
-	if err != OK:
-		return false
-	_traits_data = json.get_data()
-	return true
 
 
 ## Provide custom first/last name arrays (e.g. from a JSON). Call before generating.
@@ -248,6 +228,12 @@ func _build_traits(arch: Dictionary, tier: Dictionary) -> Dictionary:
 			out[key] = _rng.randi_range(40, 55)
 		else:
 			out[key] = NO_SKILL
+	for k in ["DIST", "WVW", "EDY", "VUL"]:
+		if out.get(k, NO_SKILL) == NO_SKILL:
+			out[k] = _rng.randi_range(40, 60)
+	for k in ["STM", "EGO", "PRO"]:
+		if out.get(k, NO_SKILL) == NO_SKILL:
+			out[k] = _rng.randi_range(45, 70)
 	return out
 
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bk5l47hw75lqb"
+
+[deps]
+
+files=["res://Data/other files/talent_trait_dictionary.value type.translation", "res://Data/other files/talent_trait_dictionary.Basic Effect.translation", "res://Data/other files/talent_trait_dictionary.For Actors....translation", "res://Data/other files/talent_trait_dictionary.For Writers....translation", "res://Data/other files/talent_trait_dictionary.For Newspeople....translation", "res://Data/other files/talent_trait_dictionary.For Showrunners....translation", "res://Data/other files/talent_trait_dictionary.For Executive Producers....translation", "res://Data/other files/talent_trait_dictionary.Rating Scale notes.translation", "res://Data/other files/talent_trait_dictionary.Engine Rules.translation"]
+
+source_file="res://Data/other files/talent_trait_dictionary.csv"
+dest_files=["res://Data/other files/talent_trait_dictionary.value type.translation", "res://Data/other files/talent_trait_dictionary.Basic Effect.translation", "res://Data/other files/talent_trait_dictionary.For Actors....translation", "res://Data/other files/talent_trait_dictionary.For Writers....translation", "res://Data/other files/talent_trait_dictionary.For Newspeople....translation", "res://Data/other files/talent_trait_dictionary.For Showrunners....translation", "res://Data/other files/talent_trait_dictionary.For Executive Producers....translation", "res://Data/other files/talent_trait_dictionary.Rating Scale notes.translation", "res://Data/other files/talent_trait_dictionary.Engine Rules.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

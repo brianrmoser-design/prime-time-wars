@@ -20,8 +20,6 @@ func build_fictional_universe() -> void:
 	if not gen.load_default_name_database():
 		push_error("FictionalUniverseBuilder: add CSVs under res://Data/name_lists/")
 		return
-	gen.load_traits_from_project()
-
 	var d2008: Dictionary = DataLoader.load_data_from_directory("res://universes/2008")
 	var shows_2008: Array = d2008["shows"]
 	if shows_2008.size() < show_count:

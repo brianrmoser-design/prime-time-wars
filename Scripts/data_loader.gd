@@ -7,7 +7,6 @@ class_name DataLoader
 # Each universe folder contains: people, contracts, shows, showtypes,
 # schedule, networks — same shapes as before when they lived under Data/.
 #
-# Shared: res://Data/traits.json (used by PersonGenerator, not loaded here).
 ###############################################################
 
 static func load_data() -> Dictionary:

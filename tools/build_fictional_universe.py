@@ -17,7 +17,7 @@ U2008 = ROOT / "universes" / "2008"
 UFIC = ROOT / "universes" / "fictional"
 NAMES = ROOT / "Data" / "name_lists"
 
-TRAIT_IDS = ["P", "C", "W", "I", "ED", "DC", "SH", "CT", "TI", "BF", "LC", "CC"]
+TRAIT_IDS = ["ACT", "WRI", "BCN", "LOG", "COM", "DRM", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]
 NO_SKILL = 15
 
 SKILL_TIERS = {
@@ -29,16 +29,16 @@ SKILL_TIERS = {
 }
 
 ARCHETYPES = {
-    "lead_actor": {"primary": ["P", "C", "I", "ED", "DC", "SH", "CT"], "secondary": ["W"], "none": ["TI", "BF", "LC", "CC"]},
-    "support_actor": {"primary": ["P", "C", "ED", "DC", "SH", "CT"], "secondary": ["W", "I"], "none": ["TI", "BF", "LC", "CC"]},
-    "host": {"primary": ["P", "C", "W", "SH", "CT", "BF"], "secondary": ["I", "ED"], "none": ["DC", "TI", "LC", "CC"]},
-    "anchor": {"primary": ["P", "C", "W", "TI", "BF"], "secondary": ["ED", "DC"], "none": ["I", "SH", "CT", "LC", "CC"]},
-    "reporter": {"primary": ["C", "W", "TI", "BF"], "secondary": ["P", "ED"], "none": ["I", "DC", "SH", "CT", "LC", "CC"]},
-    "judge": {"primary": ["P", "C", "W", "SH"], "secondary": ["I", "CT", "BF"], "none": ["ED", "DC", "TI", "LC", "CC"]},
-    "staff_writer": {"primary": ["W", "ED", "DC", "SH"], "secondary": [], "none": ["P", "C", "I", "CT", "TI", "BF", "LC", "CC"]},
-    "head_writer": {"primary": ["W", "ED", "DC", "SH"], "secondary": ["C", "LC"], "none": ["P", "I", "CT", "TI", "BF", "CC"]},
-    "showrunner": {"primary": ["C", "W", "CC", "LC", "ED", "DC", "SH"], "secondary": [], "none": ["P", "I", "CT", "TI", "BF"]},
-    "exec_producer": {"primary": ["C", "LC", "CC"], "secondary": ["W", "ED", "DC", "SH"], "none": ["P", "I", "CT", "TI", "BF"]},
+    "lead_actor": {"primary": ["ACT", "COM", "DRM"], "secondary": ["DIST", "EDY", "VUL"], "none": ["WRI", "BCN", "LOG", "WVW", "STM", "EGO", "PRO"]},
+    "support_actor": {"primary": ["ACT", "COM", "DRM"], "secondary": ["DIST", "VUL"], "none": ["WRI", "BCN", "LOG", "WVW", "EDY", "STM", "EGO", "PRO"]},
+    "host": {"primary": ["ACT", "COM", "BCN", "WRI"], "secondary": ["DRM", "EDY"], "none": ["LOG", "DIST", "WVW", "VUL", "STM", "EGO", "PRO"]},
+    "anchor": {"primary": ["BCN", "ACT", "COM"], "secondary": ["DRM", "DIST"], "none": ["WRI", "LOG", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+    "reporter": {"primary": ["BCN", "ACT"], "secondary": ["COM", "DRM", "WRI"], "none": ["LOG", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+    "judge": {"primary": ["ACT", "COM", "WRI"], "secondary": ["BCN", "DRM"], "none": ["LOG", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+    "staff_writer": {"primary": ["WRI", "COM", "DRM"], "secondary": [], "none": ["ACT", "BCN", "LOG", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+    "head_writer": {"primary": ["WRI", "COM", "DRM"], "secondary": ["LOG"], "none": ["ACT", "BCN", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
+    "showrunner": {"primary": ["LOG", "COM", "DRM"], "secondary": ["WRI", "DIST", "WVW"], "none": ["ACT", "BCN", "EDY", "VUL", "STM", "EGO", "PRO"]},
+    "exec_producer": {"primary": ["LOG"], "secondary": ["COM", "DRM", "WRI"], "none": ["ACT", "BCN", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]},
 }
 
 DEFAULT_BALANCE = {
@@ -107,6 +107,12 @@ class PersonGenPy:
                 out[key] = self.rng.randint(40, 55)
             else:
                 out[key] = NO_SKILL
+        for k in ("DIST", "WVW", "EDY", "VUL"):
+            if out.get(k, NO_SKILL) == NO_SKILL:
+                out[k] = self.rng.randint(40, 60)
+        for k in ("STM", "EGO", "PRO"):
+            if out.get(k, NO_SKILL) == NO_SKILL:
+                out[k] = self.rng.randint(45, 70)
         return out
 
     def _roll_fame(self, archetype: str) -> int:
