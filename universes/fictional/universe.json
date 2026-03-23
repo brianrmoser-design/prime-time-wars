@@ -1,5 +1,5 @@
 {
-	"id": "fictional",
+	"description": "Generated lineup (~660 people, 60 shows) from 2008 structure with CSV names.",
 	"display_name": "Fictional Universe",
-	"description": "Generated lineup (~660 people, 60 shows) from 2008 structure with CSV names."
+	"id": "fictional"
 }

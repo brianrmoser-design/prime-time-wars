@@ -7,6 +7,9 @@ class_name DataLoader
 # Each universe folder contains: people, contracts, shows, showtypes,
 # schedule, networks — same shapes as before when they lived under Data/.
 #
+# showtypes.json: effectiveness keys (Morning_Eff, …) may be numbers or strings;
+# production cost is `Cost_Per_Block_x1M` (× [EconomyScaleSettings.showtype_cost_block_dollar_scale] for USD per 30m block — see ShowTypeEconomy).
+#
 ###############################################################
 
 static func load_data() -> Dictionary:

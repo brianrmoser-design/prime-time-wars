@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c30daxb1p8hto"
+
+[deps]
+
+files=["res://broadcast_sim_2008.universe.translation", "res://broadcast_sim_2008.2008.translation"]
+
+source_file="res://broadcast_sim_2008.csv"
+dest_files=["res://broadcast_sim_2008.universe.translation", "res://broadcast_sim_2008.2008.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

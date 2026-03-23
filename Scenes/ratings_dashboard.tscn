@@ -11,6 +11,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dashboard")
 
+[node name="PeopleExportFileDialog" type="FileDialog" parent="." unique_id=725655755]
+title = "Export people ratings"
+size = Vector2i(900, 500)
+ok_button_text = "Save"
+access = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=57616719]
 layout_mode = 1
 anchors_preset = 15
@@ -125,6 +131,18 @@ metadata/_tab_index = 1
 layout_mode = 2
 placeholder_text = "Filter people by name or show..."
 
+[node name="PeopleExportRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/People" unique_id=1120702935]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ExportJsonButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/People/PeopleExportRow" unique_id=89855597]
+layout_mode = 2
+text = "Export JSON…"
+
+[node name="ExportCsvButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/People/PeopleExportRow" unique_id=1452622808]
+layout_mode = 2
+text = "Export CSV…"
+
 [node name="PeopleTree" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/People" unique_id=1531807610]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -181,3 +199,84 @@ columns = 10
 column_titles_visible = true
 allow_rmb_select = true
 hide_root = true
+
+[node name="Sim" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=2100000001]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 3
+
+[node name="SimFilterRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Sim" unique_id=2100000002]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SimPeriodLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow" unique_id=2100000003]
+layout_mode = 2
+text = "Period"
+
+[node name="SimPeriod" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow" unique_id=2100000004]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "One week"
+popup/item_0/id = 0
+popup/item_1/text = "One day"
+popup/item_1/id = 1
+
+[node name="SimDayLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow" unique_id=2100000005]
+layout_mode = 2
+text = "Day (one-day only)"
+
+[node name="SimDay" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow" unique_id=2100000006]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "Sun (0)"
+popup/item_0/id = 0
+popup/item_1/text = "Mon (1)"
+popup/item_1/id = 1
+popup/item_2/text = "Tue (2)"
+popup/item_2/id = 2
+popup/item_3/text = "Wed (3)"
+popup/item_3/id = 3
+popup/item_4/text = "Thu (4)"
+popup/item_4/id = 4
+popup/item_5/text = "Fri (5)"
+popup/item_5/id = 5
+popup/item_6/text = "Sat (6)"
+popup/item_6/id = 6
+
+[node name="SimRunBtn" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow" unique_id=2100000007]
+layout_mode = 2
+text = "Run sim"
+
+[node name="SimExportRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Sim" unique_id=2100000008]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExportSimJsonBtn" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimExportRow" unique_id=2100000009]
+layout_mode = 2
+text = "Export sim JSON…"
+
+[node name="ExportSimCsvBtn" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimExportRow" unique_id=2100000010]
+layout_mode = 2
+text = "Export sim CSV…"
+
+[node name="SimSummaryScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Sim" unique_id=2100000011]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SimSummaryLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabContainer/Sim/SimSummaryScroll" unique_id=2100000012]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="SimExportFileDialog" type="FileDialog" parent="." unique_id=2100000013]
+title = "Save sim export"
+access = 2
+use_native_dialog = true

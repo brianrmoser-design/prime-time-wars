@@ -1,9 +1,17 @@
 class_name PersonGenerator
 
+## Preload `person_profile_model.gd` so types resolve reliably in the editor.
+const ProfileModel = preload("res://Scripts/person_profile_model.gd")
+
 ###############################################################
 # person_generator.gd
 #
 # Generates fictional people for the talent pool (traits.ACT, traits.WRI, …).
+#
+# Two layered models (see Scripts/person_profile_model.gd for the second):
+# 1) **Job archetype** — what roles they can fill (Lead Actor, Staff Writer, …).
+# 2) **Career profile** — bell-curve “2008 TV industry” shape (journeyman vs phenom, etc.).
+#
 # Supports:
 # - Full universe: generate a balanced pool of appropriate size.
 # - Gradual: generate a batch to replace death/retirement.
@@ -145,11 +153,13 @@ func generate_person(archetype: String, skill_tier: String = "") -> Dictionary:
 		skill_tier = _pick_skill_tier()
 	var arch = ARCHETYPES[archetype]
 	var tier = SKILL_TIERS[skill_tier]
-	var traits := _build_traits(arch, tier)
-	var fame := _roll_fame_for_archetype(archetype, skill_tier)
-	var attractiveness := _roll_attractiveness_for_archetype(archetype, skill_tier)
+	## Career profile is independent of job: a “phenom” can still be generated as staff_writer, etc.
+	var career_profile: ProfileModel.CareerProfile = ProfileModel.roll_career_profile(_rng)
+	var traits := _build_traits(arch, tier, career_profile)
 	var dob_str := _random_dob()
 	var birth_year := int(dob_str.substr(0, 4))
+	var fame := _roll_fame_blended(archetype, skill_tier, birth_year, career_profile)
+	var attractiveness := _roll_attractiveness_blended(archetype, skill_tier, career_profile, traits.get("ACT", NO_SKILL))
 	var gender := "Male" if _rng.randi() % 2 == 0 else "Female"
 	var person := {
 		"Person_ID": _next_id(),
@@ -160,6 +170,11 @@ func generate_person(archetype: String, skill_tier: String = "") -> Dictionary:
 	}
 	for key in TRAIT_IDS:
 		person["traits." + key] = str(traits.get(key, NO_SKILL))
+	## Hidden / optional fields (design doc: talent_trait_dictionary.csv — Vice; draft 3 demographics).
+	## Same field name as `TalentTraitSchema.KEY_VICE` (design CSV: hidden vice / reliability).
+	person["traits.Vice"] = str(ProfileModel.roll_vice(_rng))
+	person["Ethnicity"] = ProfileModel.roll_ethnicity_2008(_rng)
+	person["PlaceOfBirth"] = ProfileModel.roll_place_of_birth(_rng, career_profile)
 	return person
 
 
@@ -215,28 +230,49 @@ func _pick_skill_tier() -> String:
 	return "average"
 
 
-func _build_traits(arch: Dictionary, tier: Dictionary) -> Dictionary:
+## Builds trait map: job archetype pushes primaries; [PersonProfileModel] supplies core four,
+## COM/DRM “creative pool” bounds, and skewed STM/EGO/PRO when those aren’t set by archetype.
+func _build_traits(arch: Dictionary, tier: Dictionary, profile: ProfileModel.CareerProfile) -> Dictionary:
+	var core := ProfileModel.roll_core_four_skills(_rng, profile)
 	var out := {}
 	for key in TRAIT_IDS:
 		out[key] = NO_SKILL
+	out["ACT"] = core["ACT"]
+	out["WRI"] = core["WRI"]
+	out["BCN"] = core["BCN"]
+	out["LOG"] = core["LOG"]
 	for key in arch.get("primary", []):
-		out[key] = _rng.randi_range(tier.min, tier.max)
+		out[key] = max(out[key], _rng.randi_range(tier.min, tier.max))
 	for key in arch.get("secondary", []):
-		out[key] = _rng.randi_range(55, 75)
+		out[key] = max(out[key], _rng.randi_range(55, 75))
 	for key in arch.get("none", []):
+		## COM/DRM follow the engine rule below instead of the 15% “dabble” (draft 2+3).
+		if key == "COM" or key == "DRM":
+			continue
 		if _rng.randf() < 0.15:
 			out[key] = _rng.randi_range(40, 55)
 		else:
 			out[key] = NO_SKILL
+	var cd := ProfileModel.roll_com_drm_bounded(_rng, out["ACT"], out["WRI"])
+	if "COM" not in arch.get("primary", []) and "COM" not in arch.get("secondary", []):
+		out["COM"] = cd["COM"]
+	if "DRM" not in arch.get("primary", []) and "DRM" not in arch.get("secondary", []):
+		out["DRM"] = cd["DRM"]
 	for k in ["DIST", "WVW", "EDY", "VUL"]:
 		if out.get(k, NO_SKILL) == NO_SKILL:
-			out[k] = _rng.randi_range(40, 60)
+			out[k] = _rng.randi_range(35, 75)
 	for k in ["STM", "EGO", "PRO"]:
 		if out.get(k, NO_SKILL) == NO_SKILL:
-			out[k] = _rng.randi_range(45, 70)
+			if k == "STM":
+				out[k] = ProfileModel.roll_stm(_rng)
+			elif k == "EGO":
+				out[k] = ProfileModel.roll_ego(_rng)
+			else:
+				out[k] = ProfileModel.roll_pro(_rng)
 	return out
 
 
+## Legacy anchor: wide spread by job alone (kept as one input to the blend).
 func _roll_fame_for_archetype(archetype: String, _skill_tier: String) -> int:
 	var base := 50
 	if archetype in ["lead_actor", "host", "anchor"]:
@@ -249,6 +285,21 @@ func _roll_fame_for_archetype(archetype: String, _skill_tier: String) -> int:
 	return clampi(_rng.randi_range(base - spread, base + spread), 35, 100)
 
 
+## Mixes job-based fame with career-years curve (draft 2+3) so age + profile matter.
+func _roll_fame_blended(
+	archetype: String,
+	skill_tier: String,
+	birth_year: int,
+	profile: ProfileModel.CareerProfile
+) -> int:
+	var by_job := _roll_fame_for_archetype(archetype, skill_tier)
+	var career := int(
+		round(ProfileModel.roll_fame_career_component(_rng, birth_year, profile))
+	)
+	career = clampi(career, 0, 100)
+	return clampi(int(round(by_job * 0.5 + career * 0.5)), 35, 100)
+
+
 func _roll_attractiveness_for_archetype(archetype: String, _skill_tier: String) -> int:
 	var on_screen := ["lead_actor", "support_actor", "host", "anchor", "reporter", "judge"]
 	var base := 50
@@ -256,6 +307,18 @@ func _roll_attractiveness_for_archetype(archetype: String, _skill_tier: String) 
 		base = 58
 	var spread := 28
 	return clampi(_rng.randi_range(base - spread, base + spread), 35, 100)
+
+
+## Casting filter from profile (star floor) ∩ on-camera archetype spread.
+func _roll_attractiveness_blended(
+	archetype: String,
+	skill_tier: String,
+	profile: ProfileModel.CareerProfile,
+	act_skill: int
+) -> int:
+	var by_profile := ProfileModel.roll_attractiveness_base(_rng, profile, act_skill)
+	var by_job := _roll_attractiveness_for_archetype(archetype, skill_tier)
+	return clampi(max(by_profile, by_job), 35, 100)
 
 
 func _random_dob() -> String:

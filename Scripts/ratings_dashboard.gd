@@ -16,8 +16,12 @@ extends Control
 var _show_ratings: Array = []
 var _people_with_scores: Array = []
 var _schedule_data: Dictionary = {}
+var _people_export_kind: String = "json"
+var _sim_export_kind: String = "json"
+var _last_sim_doc: Variant = null
 
 const _UNIVERSE_IDS: PackedStringArray = ["2008", "fictional"]
+const _BroadcastSim = preload("res://Scripts/broadcast_sim.gd")
 
 # Sort: column index and direction
 var _shows_sort_col: int = 0
@@ -32,10 +36,20 @@ var _schedule_sort_asc: bool = true
 @onready var _shows_tree: Tree = $MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowsTree
 @onready var _show_detail: RichTextLabel = $MarginContainer/VBoxContainer/TabContainer/Shows/HSplitContainer/ShowDetail/DetailScroll/DetailVBox/DetailLabel
 @onready var _people_filter: LineEdit = $MarginContainer/VBoxContainer/TabContainer/People/PeopleFilter
+@onready var _export_json_btn: Button = $MarginContainer/VBoxContainer/TabContainer/People/PeopleExportRow/ExportJsonButton
+@onready var _export_csv_btn: Button = $MarginContainer/VBoxContainer/TabContainer/People/PeopleExportRow/ExportCsvButton
+@onready var _people_export_dialog: FileDialog = $PeopleExportFileDialog
 @onready var _people_tree: Tree = $MarginContainer/VBoxContainer/TabContainer/People/PeopleTree
 @onready var _schedule_day_filter: OptionButton = $MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow/ScheduleDayFilter
 @onready var _schedule_network_filter: OptionButton = $MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleFilterRow/ScheduleNetworkFilter
 @onready var _schedule_tree: Tree = $MarginContainer/VBoxContainer/TabContainer/Schedule/ScheduleTree
+@onready var _sim_period: OptionButton = $MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow/SimPeriod
+@onready var _sim_day: OptionButton = $MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow/SimDay
+@onready var _sim_run_btn: Button = $MarginContainer/VBoxContainer/TabContainer/Sim/SimFilterRow/SimRunBtn
+@onready var _export_sim_json_btn: Button = $MarginContainer/VBoxContainer/TabContainer/Sim/SimExportRow/ExportSimJsonBtn
+@onready var _export_sim_csv_btn: Button = $MarginContainer/VBoxContainer/TabContainer/Sim/SimExportRow/ExportSimCsvBtn
+@onready var _sim_summary: RichTextLabel = $MarginContainer/VBoxContainer/TabContainer/Sim/SimSummaryScroll/SimSummaryLabel
+@onready var _sim_export_dialog: FileDialog = $SimExportFileDialog
 @onready var _universe_option: OptionButton = $MarginContainer/VBoxContainer/UniverseRow/UniverseOption
 
 
@@ -74,6 +88,167 @@ func _ready() -> void:
 	_build_shows_tree()
 	_build_people_tree()
 	_build_schedule_tree()
+	_export_json_btn.pressed.connect(_on_people_export_json_pressed)
+	_export_csv_btn.pressed.connect(_on_people_export_csv_pressed)
+	_people_export_dialog.file_selected.connect(_on_people_export_file_selected)
+	_export_json_btn.tooltip_text = "Save all people (full fields) plus per-show ratings (on-air, writer, showrunner) as JSON."
+	_export_csv_btn.tooltip_text = "Same data as one row per person; assignments stored in assignments_json column."
+	_sim_period.item_selected.connect(func(_i): _update_sim_period_ui())
+	_sim_run_btn.pressed.connect(_on_sim_run_pressed)
+	_export_sim_json_btn.pressed.connect(_on_sim_export_json_pressed)
+	_export_sim_csv_btn.pressed.connect(_on_sim_export_csv_pressed)
+	_sim_export_dialog.file_selected.connect(_on_sim_export_file_selected)
+	_update_sim_period_ui()
+	_refresh_sim_export_buttons()
+	_sim_summary.text = "[i]Run sim to populate summary and enable export.[/i]"
+
+
+func _on_people_export_json_pressed() -> void:
+	_people_export_kind = "json"
+	_people_export_dialog.clear_filters()
+	_people_export_dialog.add_filter("*.json", "JSON")
+	_people_export_dialog.current_file = "people_ratings_%s.json" % UniverseConfig.universe_id
+	_people_export_dialog.popup_centered()
+
+
+func _on_people_export_csv_pressed() -> void:
+	_people_export_kind = "csv"
+	_people_export_dialog.clear_filters()
+	_people_export_dialog.add_filter("*.csv", "CSV")
+	_people_export_dialog.current_file = "people_ratings_%s.csv" % UniverseConfig.universe_id
+	_people_export_dialog.popup_centered()
+
+
+func _update_sim_period_ui() -> void:
+	var one_day := _sim_period.selected == 1
+	_sim_day.disabled = not one_day
+	_sim_day.mouse_filter = Control.MOUSE_FILTER_STOP if one_day else Control.MOUSE_FILTER_IGNORE
+
+
+func _refresh_sim_export_buttons() -> void:
+	var has_doc := _last_sim_doc != null
+	_export_sim_json_btn.disabled = not has_doc
+	_export_sim_csv_btn.disabled = not has_doc
+
+
+func _on_sim_run_pressed() -> void:
+	var period: _BroadcastSim.Period = (
+		_BroadcastSim.Period.ONE_DAY
+		if _sim_period.selected == 1
+		else _BroadcastSim.Period.ONE_WEEK
+	)
+	var day_i := _sim_day.selected
+	_last_sim_doc = _BroadcastSim.get_export_document(period, day_i)
+	_sim_summary.text = _format_sim_summary(_last_sim_doc)
+	_refresh_sim_export_buttons()
+
+
+func _on_sim_export_json_pressed() -> void:
+	if _last_sim_doc == null:
+		return
+	_sim_export_kind = "json"
+	_sim_export_dialog.clear_filters()
+	_sim_export_dialog.add_filter("*.json", "JSON")
+	_sim_export_dialog.current_file = "broadcast_sim_%s.json" % UniverseConfig.universe_id
+	_sim_export_dialog.popup_centered()
+
+
+func _on_sim_export_csv_pressed() -> void:
+	if _last_sim_doc == null:
+		return
+	_sim_export_kind = "csv"
+	_sim_export_dialog.clear_filters()
+	_sim_export_dialog.add_filter("*.csv", "CSV")
+	_sim_export_dialog.current_file = "broadcast_sim_%s.csv" % UniverseConfig.universe_id
+	_sim_export_dialog.popup_centered()
+
+
+func _on_sim_export_file_selected(path: String) -> void:
+	if _last_sim_doc == null:
+		return
+	var ok: bool = false
+	if _sim_export_kind == "json":
+		ok = _BroadcastSim.save_export_json(path, _last_sim_doc)
+	else:
+		ok = _BroadcastSim.save_export_csv(path, _last_sim_doc)
+	if ok:
+		print("Exported broadcast sim to: ", path)
+	else:
+		push_error("Sim export failed (could not write file). Check folder permissions.")
+
+
+func _format_sim_summary(doc: Dictionary) -> String:
+	var sim: Dictionary = doc.get("sim", {})
+	var period_str: String = str(sim.get("period", ""))
+	var day_idx = int(sim.get("day_index", -1))
+	var slots = int(sim.get("slot_count", 0))
+	var start_each: float = float(sim.get("starting_cash_per_network", 0))
+	var bb: PackedStringArray = PackedStringArray()
+	bb.append(
+		"[b]Universe:[/b] %s  |  [b]Period:[/b] %s" % [str(doc.get("universe_id", "")), period_str]
+	)
+	if day_idx >= 0:
+		bb.append("  |  [b]Day index:[/b] %d" % day_idx)
+	bb.append("\n[b]Schedule slots with a show:[/b] %d  |  [b]Starting cash / network:[/b] %s\n\n" % [slots, _money_usd(start_each)])
+
+	bb.append("[b]By network[/b]\n")
+	for r in sim.get("networks", []):
+		var row: Dictionary = r
+		var neg_flag := "yes" if row.get("went_negative", false) else "no"
+		bb.append(
+			"  • [b]%s[/b] — start %s, ad %s, cost %s, net %s, end %s, min %s, below zero: %s\n"
+			% [
+				str(row.get("network_name", row.get("network_id", ""))),
+				_money_usd(float(row.get("starting_cash", 0))),
+				_money_usd(float(row.get("total_ad_revenue", 0))),
+				_money_usd(float(row.get("total_production_cost", 0))),
+				_money_usd(float(row.get("net_pl", 0))),
+				_money_usd(float(row.get("ending_cash", 0))),
+				_money_usd(float(row.get("min_cash_during", 0))),
+				neg_flag
+			]
+		)
+
+	bb.append("\n[b]By show[/b]\n")
+	for r2 in sim.get("shows", []):
+		var srow: Dictionary = r2
+		bb.append(
+			"  • %s (%s) — ad %s, cost %s, net %s\n"
+			% [
+				str(srow.get("show_name", "")),
+				str(srow.get("network_name", "")),
+				_money_usd(float(srow.get("total_ad_revenue", 0))),
+				_money_usd(float(srow.get("total_production_cost", 0))),
+				_money_usd(float(srow.get("net_pl", 0)))
+			]
+		)
+	return "".join(bb)
+
+
+static func _money_usd(v: float) -> String:
+	var n: int = int(round(v))
+	var neg_prefix := "-" if n < 0 else ""
+	var x: int = abs(n)
+	var s: String = str(x)
+	var parts: Array[String] = []
+	while s.length() > 3:
+		parts.push_front(s.substr(s.length() - 3, 3))
+		s = s.substr(0, s.length() - 3)
+	if s.length() > 0:
+		parts.push_front(s)
+	return neg_prefix + "$" + ",".join(PackedStringArray(parts))
+
+
+func _on_people_export_file_selected(path: String) -> void:
+	var ok: bool = false
+	if _people_export_kind == "json":
+		ok = RatingsReport.save_people_ratings_export_json(path)
+	else:
+		ok = RatingsReport.save_people_ratings_export_csv(path)
+	if ok:
+		print("Exported people ratings to: ", path)
+	else:
+		push_error("People export failed (could not write file). Check folder permissions.")
 
 
 func _setup_universe_selector() -> void:
@@ -97,6 +272,11 @@ func _setup_tooltips() -> void:
 	_people_filter.tooltip_text = "Filter people by person name or assigned show name (partial match)."
 	_schedule_day_filter.tooltip_text = "Limit the schedule grid to one weekday, or All."
 	_schedule_network_filter.tooltip_text = "Limit the schedule grid to one network, or All."
+	_sim_period.tooltip_text = "Simulate cash for one full week (Sun–Sat) or a single day."
+	_sim_day.tooltip_text = "When period is One day, which weekday (0=Sun … 6=Sat)."
+	_sim_run_btn.tooltip_text = "Load schedule + showtypes, apply slot ad rates and production costs, update network cash."
+	_export_sim_json_btn.tooltip_text = "Save last sim run as JSON (networks + shows, full numbers)."
+	_export_sim_csv_btn.tooltip_text = "Save last sim run as CSV (network block + show block)."
 
 
 func _update_universe_option_tooltip() -> void:
@@ -127,6 +307,9 @@ func _on_universe_selected(option_index: int) -> void:
 	var i := clampi(option_index, 0, _UNIVERSE_IDS.size() - 1)
 	UniverseConfig.set_universe(_UNIVERSE_IDS[i])
 	_update_universe_option_tooltip()
+	_last_sim_doc = null
+	_refresh_sim_export_buttons()
+	_sim_summary.text = "[i]Universe changed — run sim again.[/i]"
 	_load_data()
 	_populate_day_filter()
 	_populate_shows_network_filter()

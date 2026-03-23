@@ -112,6 +112,183 @@ static func get_all_people_with_scores() -> Array:
 	return out
 
 
+###############################################################
+# People export (full records + every contract rating kind)
+#
+# Each row is the person dict from data, plus `assignments`: per contract
+# with on_air / writer / showrunner scores (same engine as dashboard & shows).
+###############################################################
+
+static func _show_type_by_name(shows: Array, showtypes: Array) -> Dictionary:
+	var out := {}
+	for show_entry in shows:
+		var show_name = show_entry["Show_Name"]
+		for t in showtypes:
+			if t["ShowType_ID"] == show_entry["ShowType_ID"]:
+				out[show_name] = t.get("show_type", "")
+				break
+	return out
+
+
+## One entry per contract line; Showrunner produces writer + showrunner rows (matches ShowBuilder).
+static func build_assignment_ratings_for_person(
+	p: Dictionary,
+	contracts: Array,
+	show_type_by_name: Dictionary
+) -> Array:
+	var name: String = str(p.get("Person_Name", ""))
+	var out: Array = []
+	var w_traits := ShowBuilder.extract_writer_traits(p)
+	var sr_traits := ShowBuilder.extract_showrunner_traits(p)
+	var writer_score: float = RatingEngine.compute_writer_score(w_traits)
+	var sr_score: float = RatingEngine.compute_showrunner_score(sr_traits)
+
+	for c in contracts:
+		if str(c.get("Person_Name", "")) != name:
+			continue
+		var sn: String = str(c.get("Show_Name", ""))
+		var role: String = str(c.get("Role", ""))
+		var st: String = str(show_type_by_name.get(sn, ""))
+		var a_traits := ShowBuilder.extract_actor_traits(p)
+		var on_air := RatingEngine.compute_on_air_score(a_traits, st)
+
+		if role in ["Lead Actor", "Host", "Anchor"]:
+			out.append(
+				{"show_name": sn, "show_type": st, "role_label": role, "rating_kind": "on_air", "lead_or_support": "lead", "score": on_air}
+			)
+		elif role in ["Support Actor", "Co-Host", "Reporter"]:
+			out.append(
+				{
+					"show_name": sn,
+					"show_type": st,
+					"role_label": role,
+					"rating_kind": "on_air",
+					"lead_or_support": "support",
+					"score": on_air
+				}
+			)
+		elif role == "Judge":
+			out.append(
+				{"show_name": sn, "show_type": st, "role_label": role, "rating_kind": "on_air", "lead_or_support": "lead", "score": on_air}
+			)
+		elif role in ["Head Writer", "Staff Writer"]:
+			out.append({"show_name": sn, "show_type": st, "role_label": role, "rating_kind": "writer", "score": writer_score})
+		elif role == "Showrunner":
+			out.append({"show_name": sn, "show_type": st, "role_label": role, "rating_kind": "writer", "score": writer_score})
+			out.append({"show_name": sn, "show_type": st, "role_label": role, "rating_kind": "showrunner", "score": sr_score})
+		elif role == "Executive Producer":
+			out.append({"show_name": sn, "show_type": st, "role_label": role, "rating_kind": "showrunner", "score": sr_score})
+	return out
+
+
+## Full person rows: duplicate of each `people.json` row plus `assignments` (all rating lines).
+static func get_all_people_export_rows() -> Array:
+	var data: Dictionary = DataLoader.load_data()
+	var people: Array = data["people"]
+	var contracts: Array = data["contracts"]
+	var shows: Array = data["shows"]
+	var showtypes: Array = data["showtypes"]
+	var st_map: Dictionary = _show_type_by_name(shows, showtypes)
+	var out: Array = []
+	for p in people:
+		var row: Dictionary = (p as Dictionary).duplicate(true)
+		row["assignments"] = build_assignment_ratings_for_person(p, contracts, st_map)
+		out.append(row)
+	return out
+
+
+static func get_people_ratings_export_document() -> Dictionary:
+	return {
+		"universe_id": UniverseConfig.universe_id,
+		"export_version": 1,
+		"generated_at": Time.get_datetime_string_from_system(),
+		"people": get_all_people_export_rows()
+	}
+
+
+static func export_people_ratings_to_json_string() -> String:
+	return JSON.stringify(get_people_ratings_export_document(), "\t")
+
+
+static func _csv_escape_cell(s: String) -> String:
+	if s.find(",") >= 0 or s.find("\"") >= 0 or s.find("\n") >= 0 or s.find("\r") >= 0:
+		return "\"" + s.replace("\"", "\"\"") + "\""
+	return s
+
+
+static func export_people_ratings_to_csv_string() -> String:
+	var rows: Array = get_all_people_export_rows()
+	var trait_keys: Array[String] = [
+		TalentTraitSchema.KEY_ACT,
+		TalentTraitSchema.KEY_WRI,
+		TalentTraitSchema.KEY_BCN,
+		TalentTraitSchema.KEY_LOG,
+		TalentTraitSchema.KEY_COM,
+		TalentTraitSchema.KEY_DRM,
+		TalentTraitSchema.KEY_DIST,
+		TalentTraitSchema.KEY_WVW,
+		TalentTraitSchema.KEY_EDY,
+		TalentTraitSchema.KEY_VUL,
+		TalentTraitSchema.KEY_STM,
+		TalentTraitSchema.KEY_EGO,
+		TalentTraitSchema.KEY_PRO,
+		TalentTraitSchema.KEY_VICE
+	]
+	var header: PackedStringArray = PackedStringArray(
+		[
+			"Person_ID",
+			"Person_Name",
+			"DOB",
+			"Fame",
+			"Attractiveness",
+			"Ethnicity",
+			"PlaceOfBirth"
+		]
+	)
+	for tk in trait_keys:
+		header.append(tk.replace("traits.", "trait_"))
+	header.append("assignments_json")
+	var lines: Array[String] = []
+	var hdr_parts: PackedStringArray = PackedStringArray()
+	for i in header.size():
+		hdr_parts.append(_csv_escape_cell(header[i]))
+	lines.append(",".join(hdr_parts))
+	for row in rows:
+		var vals: PackedStringArray = PackedStringArray()
+		vals.append(_csv_escape_cell(str(row.get("Person_ID", ""))))
+		vals.append(_csv_escape_cell(str(row.get("Person_Name", ""))))
+		vals.append(_csv_escape_cell(str(row.get("DOB", ""))))
+		vals.append(_csv_escape_cell(str(row.get("Fame", ""))))
+		vals.append(_csv_escape_cell(str(row.get("Attractiveness", ""))))
+		vals.append(_csv_escape_cell(str(row.get("Ethnicity", ""))))
+		vals.append(_csv_escape_cell(str(row.get("PlaceOfBirth", ""))))
+		for tk in trait_keys:
+			vals.append(_csv_escape_cell(str(row.get(tk, ""))))
+		vals.append(_csv_escape_cell(JSON.stringify(row.get("assignments", []))))
+		lines.append(",".join(vals))
+	return "\n".join(lines)
+
+
+static func save_people_ratings_export_json(path: String) -> bool:
+	var f = FileAccess.open(path, FileAccess.WRITE)
+	if f == null:
+		push_error("RatingsReport: could not write %s" % path)
+		return false
+	f.store_string(export_people_ratings_to_json_string())
+	f.close()
+	return true
+
+
+static func save_people_ratings_export_csv(path: String) -> bool:
+	var f = FileAccess.open(path, FileAccess.WRITE)
+	if f == null:
+		push_error("RatingsReport: could not write %s" % path)
+		return false
+	f.store_string(export_people_ratings_to_csv_string())
+	f.close()
+	return true
+
+
 static func _num(v) -> float:
 	if v is String:
 		return float(v) if v.is_valid_float() else 0.0

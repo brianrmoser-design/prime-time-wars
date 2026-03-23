@@ -16,6 +16,8 @@ const KEY_VUL := "traits.VUL"
 const KEY_STM := "traits.STM"
 const KEY_EGO := "traits.EGO"
 const KEY_PRO := "traits.PRO"
+## Substance/reliability (often hidden); see talent_trait_dictionary.csv — optional on generated rows.
+const KEY_VICE := "traits.Vice"
 
 ## Dashboard column order (short labels → person dict field).
 const DASHBOARD_COLUMNS: Array = [

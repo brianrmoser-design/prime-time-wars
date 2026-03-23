@@ -8,17 +8,25 @@ Requires: universes/2008/*.json, Data/name_lists/*.csv
 from __future__ import annotations
 
 import csv
+import importlib.util
 import json
 import random
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+# Same module as Scripts/person_profile_model.gd (avoid package path issues when run as a script).
+_ppm_spec = importlib.util.spec_from_file_location("person_profile_model", ROOT / "tools" / "person_profile_model.py")
+assert _ppm_spec and _ppm_spec.loader
+ppm = importlib.util.module_from_spec(_ppm_spec)
+_ppm_spec.loader.exec_module(ppm)
 U2008 = ROOT / "universes" / "2008"
 UFIC = ROOT / "universes" / "fictional"
 NAMES = ROOT / "Data" / "name_lists"
 
 TRAIT_IDS = ["ACT", "WRI", "BCN", "LOG", "COM", "DRM", "DIST", "WVW", "EDY", "VUL", "STM", "EGO", "PRO"]
 NO_SKILL = 15
+KEY_VICE = "traits.Vice"
 
 SKILL_TIERS = {
     "elite": {"weight": 5, "min": 90, "max": 100},
@@ -96,26 +104,43 @@ class PersonGenPy:
                 return t
         return "average"
 
-    def _build_traits(self, arch: dict, tier: dict) -> dict[str, int]:
+    def _build_traits(self, arch: dict, tier: dict, profile: ppm.CareerProfile) -> dict[str, int]:
+        core = ppm.roll_core_four_skills(self.rng, profile)
         out = {k: NO_SKILL for k in TRAIT_IDS}
+        out["ACT"] = core["ACT"]
+        out["WRI"] = core["WRI"]
+        out["BCN"] = core["BCN"]
+        out["LOG"] = core["LOG"]
         for key in arch["primary"]:
-            out[key] = self.rng.randint(tier["min"], tier["max"])
+            out[key] = max(out[key], self.rng.randint(tier["min"], tier["max"]))
         for key in arch["secondary"]:
-            out[key] = self.rng.randint(55, 75)
+            out[key] = max(out[key], self.rng.randint(55, 75))
         for key in arch["none"]:
+            if key in ("COM", "DRM"):
+                continue
             if self.rng.random() < 0.15:
                 out[key] = self.rng.randint(40, 55)
             else:
                 out[key] = NO_SKILL
+        cd = ppm.roll_com_drm_bounded(self.rng, out["ACT"], out["WRI"])
+        if "COM" not in arch["primary"] and "COM" not in arch["secondary"]:
+            out["COM"] = cd["COM"]
+        if "DRM" not in arch["primary"] and "DRM" not in arch["secondary"]:
+            out["DRM"] = cd["DRM"]
         for k in ("DIST", "WVW", "EDY", "VUL"):
             if out.get(k, NO_SKILL) == NO_SKILL:
-                out[k] = self.rng.randint(40, 60)
+                out[k] = self.rng.randint(35, 75)
         for k in ("STM", "EGO", "PRO"):
             if out.get(k, NO_SKILL) == NO_SKILL:
-                out[k] = self.rng.randint(45, 70)
+                if k == "STM":
+                    out[k] = ppm.roll_stm(self.rng)
+                elif k == "EGO":
+                    out[k] = ppm.roll_ego(self.rng)
+                else:
+                    out[k] = ppm.roll_pro(self.rng)
         return out
 
-    def _roll_fame(self, archetype: str) -> int:
+    def _roll_fame_job(self, archetype: str) -> int:
         base = 50
         if archetype in ("lead_actor", "host", "anchor"):
             base = 65
@@ -125,10 +150,21 @@ class PersonGenPy:
             base = 42
         return max(35, min(100, self.rng.randint(base - 25, base + 25)))
 
-    def _roll_attr(self, archetype: str) -> int:
+    def _roll_fame_blended(self, archetype: str, birth_year: int, profile: ppm.CareerProfile) -> int:
+        by_job = self._roll_fame_job(archetype)
+        career = int(round(ppm.roll_fame_career_component(self.rng, birth_year, profile)))
+        career = max(0, min(100, career))
+        return max(35, min(100, int(round(by_job * 0.5 + career * 0.5))))
+
+    def _roll_attr_job(self, archetype: str) -> int:
         on_screen = {"lead_actor", "support_actor", "host", "anchor", "reporter", "judge"}
         base = 58 if archetype in on_screen else 50
         return max(35, min(100, self.rng.randint(base - 28, base + 28)))
+
+    def _roll_attr_blended(self, archetype: str, profile: ppm.CareerProfile, act_skill: int) -> int:
+        by_profile = ppm.roll_attractiveness_base(self.rng, profile, act_skill)
+        by_job = self._roll_attr_job(archetype)
+        return max(35, min(100, max(by_profile, by_job)))
 
     def _pick_origin(self) -> str:
         total = sum(self._origin_weight.values())
@@ -183,7 +219,8 @@ class PersonGenPy:
         tier_name = self._pick_skill_tier()
         tier = SKILL_TIERS[tier_name]
         arch = ARCHETYPES[archetype]
-        traits = self._build_traits(arch, tier)
+        profile = ppm.roll_career_profile(self.rng)
+        traits = self._build_traits(arch, tier, profile)
         y = self.rng.randint(1940, 2000)
         m = self.rng.randint(1, 12)
         d = self.rng.randint(1, 28)
@@ -194,11 +231,14 @@ class PersonGenPy:
             "Person_ID": self._next_id(),
             "Person_Name": name,
             "DOB": dob,
-            "Fame": str(self._roll_fame(archetype)),
-            "Attractiveness": str(self._roll_attr(archetype)),
+            "Fame": str(self._roll_fame_blended(archetype, y, profile)),
+            "Attractiveness": str(self._roll_attr_blended(archetype, profile, traits["ACT"])),
         }
         for k in TRAIT_IDS:
             person[f"traits.{k}"] = str(traits[k])
+        person[KEY_VICE] = str(ppm.roll_vice(self.rng))
+        person["Ethnicity"] = ppm.roll_ethnicity_2008(self.rng)
+        person["PlaceOfBirth"] = ppm.roll_place_of_birth(self.rng, profile)
         return person
 
     def generate_batch(self, n: int, balance: dict | None = None) -> list[dict]:

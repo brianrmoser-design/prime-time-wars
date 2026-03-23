@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://btkgr5u17jupa"
+
+[deps]
+
+files=["res://Data/time_slots.Time Code.translation", "res://Data/time_slots.DayPart.translation", "res://Data/time_slots.HUT.translation", "res://Data/time_slots.A18.translation", "res://Data/time_slots.A25.translation", "res://Data/time_slots.A18.translation", "res://Data/time_slots.A55.translation", "res://Data/time_slots.BASE_AD.translation"]
+
+source_file="res://Data/time_slots.csv"
+dest_files=["res://Data/time_slots.Time Code.translation", "res://Data/time_slots.DayPart.translation", "res://Data/time_slots.HUT.translation", "res://Data/time_slots.A18.translation", "res://Data/time_slots.A25.translation", "res://Data/time_slots.A18.translation", "res://Data/time_slots.A55.translation", "res://Data/time_slots.BASE_AD.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
